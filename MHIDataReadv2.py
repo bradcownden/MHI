@@ -23,8 +23,112 @@ def usage():
     print("\tfstop: final directory (inclusive). Note that it is assumed " +
           "that subsequent directories are indexed by 1.\n")
 
-def readVec(infile):
-    pass
+def getTotalMatrixSize(infile):
+    size = 0
+    if os.path.isfile(infile):
+        with open(infile, 'r') as f:
+            for line in f:
+                line = line.split()
+                # Test for empty line
+                if len(line) > 0:
+                    try:
+                        # Test for whole number that is not zero (ie. part of data)
+                        if (float(line[0]) % 1) == 0.0 and float(line[0]) != 0.0:
+                            size += float(line[-1])
+                    # Catch conversion from string to float
+                    except ValueError:
+                        pass
+                else:
+                    pass
+    else:
+        print("ERROR: Could not find file", infile)
+        
+    return int(size)
+        
+def readMatrix(infile):
+    matdata = {}
+    if os.path.isfile(infile):
+        # Go through the file and load the data into a dictionary        
+        lcount = 1
+        with open(infile, 'r') as f:
+            for line in f:
+                lcount += 1
+                line = line.split()
+                # Test for empty line
+                if len(line) > 0:
+                    try:
+                        # Test for whole number that is not zero (ie. part of data)
+                        if (float(line[0]) % 1) == 0.0 and float(line[0]) != 0.0:
+                            # This line contains the subsystem number, the timestep,
+                            # the ncols, and nrows. The next line is all dashes.
+                            # The order is then: a row with ncol data values,
+                            # a row of empty space, a row with ncol data values, etc.
+                            # After 2 x nrows, the data finishes.
+                            size = int(line[-1])
+                            # Skip up to current line number, read line number + size
+                            # of rows and store in dictionary
+                            matdata[int(line[0])] = [size, np.genfromtxt(infile, skip_header=lcount,
+                                    max_rows=size, autostrip=True)]
+                                
+                    # Catch conversion from string to float
+                    except:
+                        pass
+                else:
+                    pass    
+
+    else:
+        print("\n\nERROR: Could not find", infile)
+        
+    return matdata
+
+def readVector(infile):
+    vecdata = {}
+    if os.path.isfile(infile):
+        print("Reading", infile)
+        print("------------------")
+        # Read subsystem number, timestep. Store in dictionary
+        lcount = 1
+        with open(infile, 'r') as f:
+            for line in f:
+                lcount += 1
+                line = line.split()
+                # Skip empty lines
+                if len(line) > 0:
+                    try:
+                        # Find timestep value descriptor line: whole number that is not
+                        # part of the data
+                        if (float(line[0]) % 1) == 0.0 and float(line[0]) != 0.0:
+                            # This line contains the subsystem number, timestep, and size.
+                            # The next row is all dashes, followed by a single row with
+                            # (size) number of entries, another of dashes, an empty line.
+                            subsys = int(line[0])
+                            tstep = int(line[1])
+                            # Skip to current line number, read a single line and store in
+                            # the dictionary with the key as the timstep as the first value 
+                            # and the subsystem number as the second value.
+                            if (subsys, tstep) not in vecdata.keys():
+                                vecdata[(subsys, tstep)] = [np.genfromtxt(infile, skip_header=lcount,
+                                    max_rows=1, autostrip=True)]
+                            else:
+                                print("Found duplicate: (subsys, tstep) = (%d, %d)" % (subsys, tstep))
+                        else:
+                            pass
+                                                
+                    # Catch conversion from string to float
+                    except ValueError:
+                        pass
+                else:
+                    pass
+        print("------------------")          
+        print("Finished reading", infile)
+                
+    # Catch file DNE
+    else:
+        print("\n\nERROR: Could not find", infile)
+    
+    return vecdata
+                            
+
 
 
 
@@ -33,7 +137,52 @@ def readVec(infile):
     
 def main(dirpath, fstart, fstop):
     os.chdir(dirpath)
-    print(os.listdir())
+    dirs = sorted(os.listdir())
+    print(dirs)
+    """
+     # Iterate through folders and plot each reconstructed matrix
+    for folder in sorted(dirs):
+        matinfile = indir + '/' + folder + '/matrixA.txt'    
+        vecinfile = indir + '/' + folder + '/VectorB.txt'
+        
+        # Read all the subsystems at a certain timestep, combine into one
+        # large vector in subsystem order and save with timstep number
+        # in the filename. Repeat for next timestep.
+
+        # Get RHS vectors
+        subvecs = readVector(vecinfile)
+        try:
+            nsys, maxtime = sorted(subvecs.keys())[-1]
+            # Timestep numbering is base 0;
+            maxtime += 1
+            # subsystem numbering is base 1
+            
+            keylist = sorted(subvecs.keys())
+            
+            # Remove VectorB.txt from file name and get folder number
+            foo = vecinfile[:-len("\VectorB.txt")]
+            # Change directory to print in current folder
+            os.chdir(foo)
+    
+            print("\nWriting full system vector at each timestep into",
+                  os.getcwd())
+            for i in range(maxtime):
+                vout = []
+                vecoutfile = 'f' + folder + '_VectorB_t' + str(i) + '.txt'
+                for j in range(nsys):
+                    #print(subvecs.get(keylist[i + j * maxtime])[0])
+                    vout.append(subvecs.get(keylist[i + j * maxtime])[0])
+                # Flatten the list of lists
+                vout = [item for sublist in vout for item in sublist]
+                print(vout)
+                print("--------------------")
+                # Save the full VectorB for this folder and timestep
+                np.savetxt(vecoutfile, vout, fmt='%1.16e')
+                
+        except IndexError:
+            pass
+
+    """
 
 #####################################
 #####################################
