@@ -126,8 +126,7 @@ def readVector(infile, lncnt, verbose):
                         pass
                 else:
                     pass
-        print("\nFinished reading", infile)
-        print("------------------")          
+        print("\nFinished reading", infile)        
 
     # Catch file DNE
     else:
@@ -159,71 +158,53 @@ def main(dirpath, fstart, fstop):
         else:
             pass
         
-        # check to see if this folder has already been started
-        if (os.path.isfile('f' + fstart + '_VectorB_t0.txt')):
-            # if so, check to see if all timesteps have been completed
-            with open('VectorB.txt', 'r') as f:
-                # go to the end of the file
-                f.seek(2)
-                # read up the file to find the final timestep
-                offset = 0
-                while True:
-                    line = f.readline()
-                    line.split()
-                    if len(line) == 0:
-                        offset -= 1
-                    else:
-                        try:
-                            # Find timestep value descriptor line: whole number that is not
-                            # part of the data
-                            if (float(line[0]) % 1) == 0.0 and float(line[0]) != 0.0:
-                                # This line contains the subsystem number, timestep, and size.
-                                # The next row is all dashes, followed by a single row with
-                                # (size) number of entries, another of dashes, an empty line.
-                                maxtime = int(line[1])
-                                print("Max number of timesteps:", maxtime)
-                                break
-                            else: 
-                                offset -= 1
-                        # catch conversion from string to float
-                        except ValueError:
-                            offset -= 1
-                    # move up the file
-                    f.seek(2, offset)
-            if (os.path.isfile('f' + fstart + '_VectorB_t' + str(maxtime) + '.txt')):
-                # if the final timestep file exists, skip this directory
-                fstart = str(int(fstart) + 1)
-            # if the final timstep file doesn't exist, restart this directory
-            else:
-                pass
-            
-        # if folder hasn't been started, perform the data read/write
+        # get total numer of lines in VectorB.txt
+        lncnt = 0
+        with open('VectorB.txt', 'r') as f:
+            for line in f:
+                lncnt += 1
+        
+        # Start reading the RHS file
+        subvec = readVector('VectorB.txt', lncnt, verbose)
+        nsys, maxtime = sorted(subvec.keys())[-1]
+        # Timestep numbering is base 0;
+        maxtime += 1
+        # subsystem numbering is base 1
+        
+        if verbose:
+            print("(Number of subsystems, maximum timesteps) = (%d, %d)" 
+                  % (nsys, maxtime))  
         else:
-            # get total numer of lines in VectorB.txt
-            lncnt = 0
-            with open('VectorB.test.txt', 'r') as f:
-                for line in f:
-                    lncnt += 1
+            pass
         
-            # Start reading the RHS file
-            subvec = readVector('VectorB.test.txt', lncnt, verbose)
-            nsys, maxtime = sorted(subvec.keys())[-1]
-            # Timestep numbering is base 0;
-            maxtime += 1
-            # subsystem numbering is base 1
+        keylist = sorted(subvec.keys())
+            
+        if verbose:
+            print("\nWriting full system vector at each timestep into",
+                  os.getcwd())
+        else:
+            pass
         
-            if verbose:
-                print("(Number of subsystems, maximum timesteps) = (%d, %d)" 
-                      % (nsys, maxtime))
-            else:
-                pass
+        # Do the writing
+        for i in range(maxtime):
+            vout = []
+            vecoutfile = 'f' + fstart + '_VectorB_t' + str(i) + '.txt'
+            for j in range(nsys):
+                if verbose:
+                    print(subvec.get(keylist[i + j * maxtime])[0])
+                vout.append(subvec.get(keylist[i + j * maxtime])[0])
+                # Flatten the list of lists
+                vout = [item for sublist in vout for item in sublist]
+                if verbose:
+                    print(vout)
+                    print("--------------------")
+                # Save the full VectorB for this folder and timestep
+                #np.savetxt(vecoutfile, vout, fmt='%1.16e')
         
-            fstart = str(int(fstart) + 1)
-            # move out of folder
-            os.chdir("../")
-        
-    if verbose:
-            print("Final directory:", os.getcwd())
+        # increment and move out of the folder        
+        fstart = str(int(fstart) + 1)
+        os.chdir("../")
+    
     """
      # Iterate through folders and plot each reconstructed matrix
     for folder in sorted(dirs):
@@ -266,6 +247,49 @@ def main(dirpath, fstart, fstop):
                 
         except IndexError:
             pass
+            
+     # check to see if this folder has already been started
+        if (os.path.isfile('f' + fstart + '_VectorB_t0.txt')):
+            print("Found file:", 'f' + fstart + '_VectorB_t0.txt')
+            # if so, check to see if all timesteps have been completed
+            with open('VectorB.txt', 'r') as f:
+                # get the maximum timestep value
+                maxtime = 0
+                for line in f:
+                    line = line.split()
+                    if len(line) > 0:
+                        try:
+                            # Find timestep value descriptor line: whole number that is not
+                            # part of the data
+                            if (float(line[0]) % 1) == 0.0 and float(line[0]) != 0.0:
+                                # This line contains the subsystem number, timestep, and size.
+                                # The next row is all dashes, followed by a single row with
+                                # (size) number of entries, another of dashes, an empty line.
+                                maxtime = max(maxtime, int(line[1]))
+                            else: 
+                                pass
+                        # catch conversion from string to float
+                        except ValueError:
+                            pass
+                    else:
+                        pass
+
+            # see if final timestep file has been written already                    
+            if (os.path.isfile('f' + fstart + '_VectorB_t' + str(maxtime) + '.txt')):
+                # if this file exists, skip the directory
+                if verbose:
+                    print("All %d timestep files have been printed in %s. Continuing to next directory." 
+                          % (maxtime, fstart))
+                skip = True
+                os.chdir("../")
+            # if the final timstep file doesn't exist, restart this directory
+            else:
+                if verbose:
+                    print("Not all %d timestep files have been printed. Starting data read...")
+                else:
+                    pass
+            
+        # if folder hasn't been started, perform the data read/write
 
     """
 
