@@ -141,14 +141,10 @@ def readVector(infile, lncnt, verbose):
 def main(dirpath, fstart, fstop):
     
     # Verbosity for the debugging
-    verbose = True
+    verbose = False
     
     os.chdir(dirpath)
     dirs = sorted(os.listdir(), key=int)
-    if verbose:
-        print(dirs)
-    else:
-        pass
     
     while (int(fstart) <= int(fstop)):
         # move into a folder
@@ -306,7 +302,7 @@ else:
 
 dirpath = "C:\\Users\\bcownden\\MHI_Data\\Output\\Province"
 fstart = "2"
-fstop = "3"
+fstop = "2"
 main(dirpath, fstart, fstop)
 
 #####################################
