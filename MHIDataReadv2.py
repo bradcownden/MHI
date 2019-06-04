@@ -141,7 +141,7 @@ def readVector(infile, lncnt, verbose):
 def main(dirpath, fstart, fstop):
     
     # Verbosity for the debugging
-    verbose = False
+    verbose = True
     
     os.chdir(dirpath)
     dirs = sorted(os.listdir(), key=int)
@@ -156,12 +156,12 @@ def main(dirpath, fstart, fstop):
         
         # get total numer of lines in VectorB.txt
         lncnt = 0
-        with open('VectorB.txt', 'r') as f:
+        with open('VectorB.test.txt', 'r') as f:
             for line in f:
                 lncnt += 1
         
         # Start reading the RHS file
-        subvec = readVector('VectorB.txt', lncnt, verbose)
+        subvec = readVector('VectorB.test.txt', lncnt, verbose)
         nsys, maxtime = sorted(subvec.keys())[-1]
         # Timestep numbering is base 0;
         maxtime += 1
@@ -169,7 +169,7 @@ def main(dirpath, fstart, fstop):
         
         if verbose:
             print("(Number of subsystems, maximum timesteps) = (%d, %d)" 
-                  % (nsys, maxtime))  
+                  % (nsys, maxtime))
         else:
             pass
         
@@ -184,18 +184,18 @@ def main(dirpath, fstart, fstop):
         # Do the writing
         for i in range(maxtime):
             vout = []
-            vecoutfile = 'f' + fstart + '_VectorB_t' + str(i) + '.txt'
+            vecoutfile = 'f' + fstart + '_VectorBtest_t' + str(i) + '.txt'
             for j in range(nsys):
                 if verbose:
                     print(subvec.get(keylist[i + j * maxtime])[0])
                 vout.append(subvec.get(keylist[i + j * maxtime])[0])
                 # Flatten the list of lists
-                vout = [item for sublist in vout for item in sublist]
-                if verbose:
-                    print(vout)
-                    print("--------------------")
+            vout = [item for sublist in vout for item in sublist]
+            if verbose:
+                print(vout)
+                print("--------------------")
                 # Save the full VectorB for this folder and timestep
-                #np.savetxt(vecoutfile, vout, fmt='%1.16e')
+                np.savetxt(vecoutfile, vout, fmt='%1.16e')
         
         # increment and move out of the folder        
         fstart = str(int(fstart) + 1)
