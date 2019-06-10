@@ -7,7 +7,7 @@ Created on Mon Jun  3 13:07:44 2019
 
 import numpy as np
 import matplotlib.pyplot as plt
-import os, sys
+import os, sys, datetime
 
 #####################################
 #####################################
@@ -74,31 +74,34 @@ def readMatrix(infile):
         
     return matdata
 
+# Write non-zero entries to .mtx file in column-ordered list
+def writeData(outfile, row, col, val):
+    with open(outfile, 'a') as f:
+        f.write("%d %d %1.12e\n" % (row, col, val))
+
+# Write header to .mtx file
+def writeIntro(outfile, size, nnz):
+    date = datetime.datetime.now()
+    with open(outfile, 'w+') as f:
+        f.write("%%MatrixMarket matrix coordinate real general\n")
+        f.write("%--------------------------------------------------------------\n")
+        f.write("% \n")
+        f.write("% " + "date: %s\n" % str(str(date.year) + '-' + str(date.month) + '-' + str(date.day)))     
+        f.write("% \n")           
+        f.write("%--------------------------------------------------------------\n")
+        f.write("%d %d %d\n" % (size, size, nnz))
+
+
 #####################################
 #####################################
     
 def main(dirpath):
     
-    # Verbosity for the debugging
-    verbose = True
-    
     os.chdir(dirpath)
-
-    """
-    Psuedo code:
-        Each directory has a matrixA.txt file that is broken up into subsystems. Read the size of
-        all the subsystems for the total shape of that directory's matrix.
-
-        Each subsystem needs to be added together along the diagonal of a directory matrix -> add
-        this in blocks maybe: np.block()
-
-        The total system matrix comes from adding each of the directory matrices together along 
-        the diagonal -> add these with a diagonal call?
-
-        System matrix is now a huge sparse matrix -> write out to .mtx format so it can be 
-        read into the CUDA program.
-    """
-    # iterate through directories and get the total size of the system matrix
+    print("Current working directory:", dirpath)
+    
+    
+    # Iterate through directories and get the total size of the system matrix
     sizes = []
     for i in range(1,40):
         target = "./" + str(i) + "/matrixA.txt"
@@ -110,7 +113,8 @@ def main(dirpath):
             break
 
 
-    
+    # Load non-zero values for each submatrix in each directory into a system
+    # M matrix
     Msys = {}
     major_offset = 0
     for i in range(1,40):
@@ -123,8 +127,6 @@ def main(dirpath):
             # so that the row position is major_offset + minor_offset + i
             for key in sorted(submat.keys()):
                 temp = submat.get(key)[1:][0]
-                if key == 1:
-                    print(temp)
                 # Get the indices of the nonzero values
                 ivals, jvals = np.nonzero(temp)
                 # Nonzero indices are Msys key (base 1), element value is Msys value
@@ -134,15 +136,32 @@ def main(dirpath):
                 # Increment minor offset value for next submatrix
                 minor_offset += submat.get(key)[0]
             # Increment major offset value for next directory
-            #print(sizes[i])
             major_offset += sizes[i - 1]
-            print(major_offset)
         else:
             print("Could not find", target)
     
-    #print(Msys)
 
+    # Write header of .mtx output file
+    m_out = "sysMatA.mtx"
     sys_size = sum(sizes)
+    writeIntro(m_out, sys_size, len(Msys))
+    
+    
+    # Sort system matrix into column-major format
+    # and write to file in .mtx format
+    print("Writing system matrix to", m_out)
+    ii = 0
+    total = len(Msys)
+    for key in sorted(Msys.keys(), key = lambda x: x[1]):
+        print("\rFinished %d%%..." % int(ii / total * 100), end='')
+        row, col = key
+        val = Msys.get(key)
+        writeData(m_out, row, col, val)
+        ii += 1
+
+    print("Done.")
+    
+    
     # Make a visualization
     M = np.zeros((sys_size, sys_size))
     for key in Msys.keys():
@@ -153,12 +172,8 @@ def main(dirpath):
     plt.grid()
     plt.spy(M, markersize=2)
     plt.show()
-
-    """
-    To sort dictionary by second entry in dictionary value (x, y), use 
-    sorted(array, key=lambda x: x[1])
-    """
-
+    
+    
 #####################################
 #####################################
 
