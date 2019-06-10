@@ -97,6 +97,7 @@ def writeIntro(outfile, size, nnz):
     
 def main(dirpath):
     
+    
     os.chdir(dirpath)
     print("Current working directory:", dirpath)
     
@@ -115,6 +116,7 @@ def main(dirpath):
 
     # Load non-zero values for each submatrix in each directory into a system
     # M matrix
+    print("Loading sparse matrices.")
     Msys = {}
     major_offset = 0
     for i in range(1,40):
@@ -156,12 +158,14 @@ def main(dirpath):
         print("\rFinished %d%%..." % int(ii / total * 100), end='')
         row, col = key
         val = Msys.get(key)
-        writeData(m_out, row, col, val)
+        #writeData(m_out, row, col, val)
         ii += 1
 
-    print("Done.")
+    print("\rFinished 100%...", end='')
+    print("\nDone.")
     
     
+    """
     # Make a visualization
     M = np.zeros((sys_size, sys_size))
     for key in Msys.keys():
@@ -172,6 +176,48 @@ def main(dirpath):
     plt.grid()
     plt.spy(M, markersize=2)
     plt.show()
+    """
+    
+    
+    # Hardcoded test feature
+    mode = "test"
+    directory = 3
+    if mode == "test":
+        # Test values in system matrix against individual directories
+        test_mat = readMatrix(str(directory) + "/matrixA.txt")
+        print("Testing system matrix against direct reading of %s" %
+              str(directory) + "/matrixA.txt")
+        # Offset will be the sum of the sizes of the directories up
+        # to the test directory
+        offset = sum(sizes[:directory])
+        # Shift is the sum of the sizes of subsystems
+        shift = 0
+        for key in sorted(test_mat):
+            # Compare non-zero values of subsystem to system matrix 
+            temp = test_mat.get(key)[1:][0]
+            sub_size = test_mat.get(key)[0]
+            print(temp)
+            # Find non-zero values in subsystem
+            for i in range(sub_size):
+                for j in range(sub_size):
+                    if temp[i][j] != 0.0:
+                        # Compare this value to the value found in the 
+                        # full system matrix
+                        print("From direct read: (%d, %d) = %f" % (i, j, temp[i][j]))
+                        test_key = (offset + shift + i + 1, offset + shift + j + 1)
+                        if test_key in Msys:
+                            print("Corresponding element in sysMatA:", Msys.get(test_key))
+                            print("Difference:", temp[i][j] - Msys.get(test_key))
+                        else:
+                            print("ERROR: failed to find value in Msys with key", test_key)
+                    else:
+                        pass
+                        
+            # Increment shift by subsystem size
+            shift += sub_size
+    else:
+        pass
+    
     
     
 #####################################
