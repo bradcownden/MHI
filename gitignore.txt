@@ -1,0 +1,8 @@
+# List files, directories, or file types for git to ignore
+
+# Visual studio files
+*.ilk
+*.exp
+*.pdb
+*.lib
+.vs/
