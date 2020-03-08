@@ -16,10 +16,7 @@
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
 x64/
-x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
@@ -338,3 +335,18 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+# Data directories that are not useful
+Output/Cigre_benchmark
+Output/Inrush
+Output/.*
+Output/Province/.*
+Output/Province/1*
+Output/Province/2*
+Output/Province/3*
+Output/Province/4*
+Output/Province/5*
+Output/Province/6*
+Output/Province/7*
+Output/Province/8*
+Output/Province/9*
