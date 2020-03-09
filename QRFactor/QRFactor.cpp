@@ -14,6 +14,8 @@
 #include <string.h>
 #include <ctype.h>
 #include <assert.h>
+#include <iostream>
+#include <chrono>
 
 #include "cusolverSp.h"
 
@@ -23,6 +25,7 @@
 
 #include "helper_cuda.h"
 #include "helper_cusolver.h"
+
 
 template <typename T_ELEM>
 int loadMMSparseMatrix(
@@ -85,6 +88,11 @@ int main(int argc, char* argv[])
     csrqrInfoHost_t h_info = NULL; // opaque info structure for LU with parital pivoting
     csrqrInfo_t d_info = NULL; // opaque info structure for LU with parital pivoting
 
+    cudaEvent_t start, stop; // CUDA timing events
+    cudaEventCreate(&start);
+    cudaEventCreate(&stop);
+    float gpu_time = 0.;
+
     int rowsA = 0; // number of rows of A
     int colsA = 0; // number of columns of A
     int nnzA = 0; // number of nonzeros of A
@@ -120,7 +128,7 @@ int main(int argc, char* argv[])
     // singularity is -1 if A is invertible under tol
     // tol determines the condition of singularity
     int singularity = 0;
-    const double tol = 1.e-14;
+    const double tol = 1.e-16;
 
     double x_inf = 0.0; // |x|
     double r_inf = 0.0; // |r|
@@ -132,11 +140,11 @@ int main(int argc, char* argv[])
 
     if (opts.sparse_mat_filename == NULL)
     {
-        opts.sparse_mat_filename = sdkFindFilePath("lap2D_5pt_n32.mtx", argv[0]);
+        opts.sparse_mat_filename = sdkFindFilePath("sysMatA.mtx", argv[0]);
         if (opts.sparse_mat_filename != NULL)
             printf("Using default input file [%s]\n", opts.sparse_mat_filename);
         else
-            printf("Could not find lap2D_5pt_n32.mtx\n");
+            printf("Could not find sysMatA.mtx\n");
     }
     else
     {
@@ -208,6 +216,8 @@ int main(int argc, char* argv[])
 
     memcpy(h_bcopy, h_b, sizeof(double) * rowsA);
 
+    auto cpu_start = std::chrono::high_resolution_clock::now(); // CPU timing
+
     printf("step 2: create opaque info structure\n");
     checkCudaErrors(cusolverSpCreateCsrqrInfoHost(&h_info));
 
@@ -257,6 +267,10 @@ int main(int argc, char* argv[])
     checkCudaErrors(cusolverSpDcsrqrSolveHost(
         cusolverSpH, rowsA, colsA, h_b, h_x, h_info, buffer_cpu));
 
+    auto cpu_stop = std::chrono::high_resolution_clock::now(); // CPU timing stop
+    std::chrono::duration<double, std::milli> cpu_time = cpu_stop - cpu_start;
+    printf("CPU execution time: %E ms\n", cpu_time.count());
+
     printf("step 8: evaluate residual r = b - A*x (result on CPU)\n");
     // use GPU gemv to compute r = b - A*x
     checkCudaErrors(cudaMemcpy(d_csrRowPtrA, h_csrRowPtrA, sizeof(int) * (rowsA + 1), cudaMemcpyHostToDevice));
@@ -290,6 +304,8 @@ int main(int argc, char* argv[])
     printf("(CPU) |A| = %E \n", A_inf);
     printf("(CPU) |x| = %E \n", x_inf);
     printf("(CPU) |b - A*x|/(|A|*|x|) = %E \n", r_inf / (A_inf * x_inf));
+
+    checkCudaErrors(cudaEventRecord(start)); // Timing for GPU solve
 
     printf("step 9: create opaque info structure\n");
     checkCudaErrors(cusolverSpCreateCsrqrInfo(&d_info));
@@ -360,6 +376,11 @@ int main(int argc, char* argv[])
         d_x,
         &one,
         d_r));
+
+    checkCudaErrors(cudaEventRecord(stop)); // Stop timing and calculate GPU execution time
+    checkCudaErrors(cudaEventSynchronize(stop));
+    checkCudaErrors(cudaEventElapsedTime(&gpu_time, start, stop));
+    printf("GPU execution timing: %E ms\n", gpu_time);
 
     checkCudaErrors(cudaMemcpy(h_r, d_r, sizeof(double) * rowsA, cudaMemcpyDeviceToHost));
 
