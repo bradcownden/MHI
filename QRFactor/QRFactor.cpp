@@ -16,6 +16,7 @@
 #include <assert.h>
 #include <iostream>
 #include <chrono>
+#include <fstream>
 
 #include "cusolverSp.h"
 
@@ -76,6 +77,35 @@ void parseCommandLineArguments(int argc, char* argv[], struct testOpts& opts)
     }
 }
 
+void readB(const char* inFile, char* argv[], const int rowsA, double* inPtr) // Read in b vectors
+{
+    char* bfile = sdkFindFilePath(inFile, argv[0]);
+    if (bfile)
+    {
+        printf("Reading file %s\n", bfile);
+        std::ifstream file(bfile);
+        if (file.is_open())
+        {
+            std::string line;
+            std::string::size_type val;
+            int count = 0;
+            while(getline(file, line))
+            {
+                inPtr[count] = std::stod(line, &val);
+                printf("%s\n", line.c_str());
+                ++count;
+            }
+            if (count != rowsA)
+            {
+                printf("\nERROR: input file has %d rows, exceeds matrix row size %d\n\n", count, rowsA);
+            }
+        }
+    }
+    else
+    {
+        printf("\nERROR: couldn't find file %s\n\n", bfile);
+    }
+}
 
 int main(int argc, char* argv[])
 {
@@ -208,6 +238,9 @@ int main(int argc, char* argv[])
     checkCudaErrors(cudaMalloc((void**)&d_x, sizeof(double) * colsA));
     checkCudaErrors(cudaMalloc((void**)&d_b, sizeof(double) * rowsA));
     checkCudaErrors(cudaMalloc((void**)&d_r, sizeof(double) * rowsA));
+
+    const char* bFile = "../Output/Province/system/sysVecB_t0.txt";
+    readB(bFile, argv, rowsA, h_b);
 
     for (int row = 0; row < rowsA; row++)
     {
