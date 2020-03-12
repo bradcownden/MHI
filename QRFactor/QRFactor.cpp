@@ -89,15 +89,16 @@ void readB(const char* inFile, char* argv[], const int rowsA, double* inPtr) // 
             std::string line;
             std::string::size_type val;
             int count = 0;
-            while(getline(file, line))
+            while (count < rowsA) // Stopgap for some data files having different lengths
             {
+                getline(file, line);
                 inPtr[count] = std::stod(line, &val);
-                printf("%s\n", line.c_str());
+                //printf("%s\n", line.c_str());
                 ++count;
             }
             if (count != rowsA)
             {
-                printf("\nERROR: input file has %d rows, exceeds matrix row size %d\n\n", count, rowsA);
+                printf("\nERROR: input file has %d rows, but matrix row size %d\n\n", count, rowsA);
             }
         }
     }
@@ -239,7 +240,7 @@ int main(int argc, char* argv[])
     checkCudaErrors(cudaMalloc((void**)&d_b, sizeof(double) * rowsA));
     checkCudaErrors(cudaMalloc((void**)&d_r, sizeof(double) * rowsA));
 
-    const char* bFile = "../Output/Province/system/sysVecB_t0.txt";
+    const char* bFile = "../Output/Province/system/sysVecB_t1.txt";
     readB(bFile, argv, rowsA, h_b);
 
     for (int row = 0; row < rowsA; row++)
