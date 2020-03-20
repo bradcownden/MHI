@@ -27,6 +27,8 @@
 #include "helper_cuda.h"
 #include "helper_cusolver.h"
 
+//#include "QRFactor.h"
+
 
 template <typename T_ELEM>
 int loadMMSparseMatrix(

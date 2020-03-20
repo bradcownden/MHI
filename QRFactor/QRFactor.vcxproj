@@ -17,6 +17,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mmio.h" />
+    <ClInclude Include="QRFactor.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{80B83188-B392-4E64-AFD1-94033488F558}</ProjectGuid>
