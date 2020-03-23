@@ -59,13 +59,14 @@ private:
 class CPUFactor
 {
 public:
+    CPUFactor(const cusolverSpHandle_t cusolverSpH, const cusparseHandle_t cusparseH, const cudaStream_t stream,
+        const cusparseMatDescr_t descrA, const csrqrInfoHost_t h_info, const int rowsA, const int colsA, const int nnzA,
+        const int baseA, const int* h_csrRowPtrA, const int* h_csrColIndA, double* h_csrValA, double* h_x, double* h_b,
+        void* buffer_cpu, const double tol);
 
-    double* b_in;
-    double* x_out;
 
 private:
-
-
+    int singularity = 0;
 };
 
 
