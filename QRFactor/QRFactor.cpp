@@ -16,13 +16,12 @@
 #include <assert.h>
 #include <iostream>
 #include <chrono>
+#include <fstream>
 
 #include "cusolverSp.h"
-
 #include "cusolverSp_LOWLEVEL_PREVIEW.h"
 
 #include <cuda_runtime.h>
-
 #include "helper_cuda.h"
 #include "helper_cusolver.h"
 
@@ -76,6 +75,114 @@ void parseCommandLineArguments(int argc, char* argv[], struct testOpts& opts)
     }
 }
 
+void cpuCalc(csrqrInfoHost_t h_info, cusolverSpHandle_t cusolverSpH, cudaStream_t stream, cusparseMatDescr_t descrA,
+    int rowsA, int colsA, int nnzA, int* h_csrRowPtrA, int* h_csrColIndA, double* h_csrValA, double* h_b, const int tstep)
+{
+    int singularity = 0;
+    const double tol = 1.0e-16;
+    const double zero = 0.0;
+    void* buffer_cpu = NULL;
+    size_t size_qr = 0;
+    size_t size_internal = 0;
+    double* h_x = NULL;
+
+    h_x = (double*)malloc(sizeof(double) * colsA);
+
+    // Create opaque info structure
+    checkCudaErrors(cusolverSpCreateCsrqrInfoHost(&h_info));
+
+    // Analyze qr(A)
+    checkCudaErrors(cusolverSpXcsrqrAnalysisHost(
+        cusolverSpH, rowsA, colsA, nnzA,
+        descrA, h_csrRowPtrA, h_csrColIndA,
+        h_info));
+
+    // Create workspace for qr(A)
+    checkCudaErrors(cusolverSpDcsrqrBufferInfoHost(
+        cusolverSpH, rowsA, colsA, nnzA,
+        descrA, h_csrValA, h_csrRowPtrA, h_csrColIndA,
+        h_info,
+        &size_internal,
+        &size_qr));
+
+    if (buffer_cpu) {
+        free(buffer_cpu);
+    }
+    buffer_cpu = (void*)malloc(sizeof(char) * size_qr);
+    assert(NULL != buffer_cpu);
+
+    // Set up, then factor
+    checkCudaErrors(cusolverSpDcsrqrSetupHost(
+        cusolverSpH, rowsA, colsA, nnzA,
+        descrA, h_csrValA, h_csrRowPtrA, h_csrColIndA,
+        zero,
+        h_info));
+
+    checkCudaErrors(cusolverSpDcsrqrFactorHost(
+        cusolverSpH, rowsA, colsA, nnzA,
+        NULL, NULL,
+        h_info,
+        buffer_cpu));
+
+    // Check for singularity
+    checkCudaErrors(cusolverSpDcsrqrZeroPivotHost(
+        cusolverSpH, h_info, tol, &singularity));
+
+    if (0 <= singularity) {
+        fprintf(stderr, "Error: A is not invertible, singularity=%d\n", singularity);
+        exit(1);
+    }
+
+    // Solve the linear equation
+    checkCudaErrors(cusolverSpDcsrqrSolveHost(
+        cusolverSpH, rowsA, colsA, h_b, h_x, h_info, buffer_cpu));
+
+    // Write the solution to file for later comparison
+    char Outname[500];
+    sprintf(Outname, "CPUFactor_t%d.txt", tstep);
+    FILE* Outfile = fopen(Outname, "w");
+    if (Outfile == NULL)
+    {
+        std::cout << "\nERROR: Couldn't write to file " << Outfile << "\n";
+        exit(1);
+    }
+    for (int i = 0; i < rowsA; ++i)
+    {
+        fprintf(Outfile, "%1.15e\n", h_b[i]);
+    }
+    fclose(Outfile);
+}
+
+void readB(const char* inFile, char* argv[], const int rowsA, double* inPtr) // Read in b vectors
+{
+    char* bfile = sdkFindFilePath(inFile, argv[0]);
+    if (bfile)
+    {
+        printf("Reading file %s\n", bfile);
+        std::ifstream file(bfile);
+        if (file.is_open())
+        {
+            std::string line;
+            std::string::size_type val;
+            int count = 0;
+            while (count < rowsA) // Stopgap for some data files having different lengths
+            {
+                getline(file, line);
+                inPtr[count] = std::stod(line, &val);
+                //printf("%s\n", line.c_str());
+                ++count;
+            }
+            if (count != rowsA)
+            {
+                printf("\nERROR: input file has %d rows, but matrix row size %d\n\n", count, rowsA);
+            }
+        }
+    }
+    else
+    {
+        printf("\nERROR: couldn't find file %s\n\n", bfile);
+    }
+}
 
 int main(int argc, char* argv[])
 {
@@ -209,6 +316,9 @@ int main(int argc, char* argv[])
     checkCudaErrors(cudaMalloc((void**)&d_b, sizeof(double) * rowsA));
     checkCudaErrors(cudaMalloc((void**)&d_r, sizeof(double) * rowsA));
 
+    const char* bFile = "../Output/Province/system/sysVecB_t1.txt";
+    readB(bFile, argv, rowsA, h_b);
+
     for (int row = 0; row < rowsA; row++)
     {
         h_b[row] = 1.0;
@@ -218,6 +328,7 @@ int main(int argc, char* argv[])
 
     auto cpu_start = std::chrono::high_resolution_clock::now(); // CPU timing
 
+    /*
     printf("step 2: create opaque info structure\n");
     checkCudaErrors(cusolverSpCreateCsrqrInfoHost(&h_info));
 
@@ -266,6 +377,10 @@ int main(int argc, char* argv[])
     printf("step 7: solve A*x = b \n");
     checkCudaErrors(cusolverSpDcsrqrSolveHost(
         cusolverSpH, rowsA, colsA, h_b, h_x, h_info, buffer_cpu));
+     */
+
+    cpuCalc(h_info, cusolverSpH, stream, descrA, rowsA, colsA, nnzA, h_csrRowPtrA,
+        h_csrColIndA, h_csrValA, h_b, 0);
 
     auto cpu_stop = std::chrono::high_resolution_clock::now(); // CPU timing stop
     std::chrono::duration<double, std::milli> cpu_time = cpu_stop - cpu_start;
