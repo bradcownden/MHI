@@ -16,12 +16,13 @@
 #include <assert.h>
 #include <iostream>
 #include <chrono>
-#include <fstream>
 
 #include "cusolverSp.h"
+
 #include "cusolverSp_LOWLEVEL_PREVIEW.h"
 
 #include <cuda_runtime.h>
+
 #include "helper_cuda.h"
 #include "helper_cusolver.h"
 
@@ -76,6 +77,7 @@ void parseCommandLineArguments(int argc, char* argv[], struct testOpts& opts)
     }
 }
 
+<<<<<<< HEAD
 void gpuFactor(csrqrInfo_t d_info, cusolverSpHandle_t cusolverSpH, cusparseMatDescr_t descrA, void* buffer_gpu,
     int rowsA, int colsA, int nnzA, int* d_csrRowPtrA, int* d_csrColIndA, double* d_csrValA)
 {
@@ -241,6 +243,8 @@ void readB(const char* inFile, char* argv[], const int rowsA, double* inPtr) // 
         printf("\nERROR: couldn't find file %s\n\n", bfile);
     }
 }
+=======
+>>>>>>> parent of 0120d01... Merge branch 'Dev'
 
 int main(int argc, char* argv[])
 {
@@ -371,9 +375,6 @@ int main(int argc, char* argv[])
     checkCudaErrors(cudaMalloc((void**)&d_b, sizeof(double) * rowsA));
     checkCudaErrors(cudaMalloc((void**)&d_r, sizeof(double) * rowsA));
 
-    const char* bFile = "../Output/Province/system/sysVecB_t1.txt";
-    readB(bFile, argv, rowsA, h_b);
-
     for (int row = 0; row < rowsA; row++)
     {
         h_b[row] = 1.0;
@@ -386,7 +387,6 @@ int main(int argc, char* argv[])
 
     auto cpu_start = std::chrono::high_resolution_clock::now(); // CPU timing
 
-    /*
     printf("step 2: create opaque info structure\n");
     checkCudaErrors(cusolverSpCreateCsrqrInfoHost(&h_info));
 
@@ -435,10 +435,13 @@ int main(int argc, char* argv[])
     printf("step 7: solve A*x = b \n");
     checkCudaErrors(cusolverSpDcsrqrSolveHost(
         cusolverSpH, rowsA, colsA, h_b, h_x, h_info, buffer_cpu));
+<<<<<<< HEAD
      */
 
     cpuCalc(h_info, cusolverSpH, descrA, rowsA, colsA, nnzA, h_csrRowPtrA,
         h_csrColIndA, h_csrValA, h_b, 0);
+=======
+>>>>>>> parent of 0120d01... Merge branch 'Dev'
 
     auto cpu_stop = std::chrono::high_resolution_clock::now(); // CPU timing stop
     std::chrono::duration<double, std::milli> cpu_time = cpu_stop - cpu_start;
