@@ -132,8 +132,6 @@ void gpuFactor(csrqrInfo_t d_info, cusolverSpHandle_t cusolverSpH, cusparseMatDe
     }
 }
 
-void cpuCalc(csrqrInfoHost_t h_info, cusolverSpHandle_t cusolverSpH, cusparseMatDescr_t descrA,
-=======
 void cpuCalc(csrqrInfoHost_t h_info, cusolverSpHandle_t cusolverSpH, cudaStream_t stream, cusparseMatDescr_t descrA,
     int rowsA, int colsA, int nnzA, int* h_csrRowPtrA, int* h_csrColIndA, double* h_csrValA, double* h_b, const int tstep)
 {
