@@ -356,3 +356,6 @@ Output/Province/9*
 # Data files produced for validation
 CPUFactor*.txt
 GPUFactor*.txt
+
+# Reports directory
+Reports/
