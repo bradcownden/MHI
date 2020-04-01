@@ -76,6 +76,42 @@ void parseCommandLineArguments(int argc, char* argv[], struct testOpts& opts)
     }
 }
 
+void loadMatrix(struct testOpts& opts, int rowsA, int colsA, int nnzA,
+    double* d_csrValA, int* d_csrRowPtrA, int* d_csrColIndA, int baseA, char* argv[])
+{
+    if (opts.sparse_mat_filename == NULL)
+    {
+        opts.sparse_mat_filename = sdkFindFilePath("sysMatA.mtx", argv[0]);
+        if (opts.sparse_mat_filename != NULL)
+            printf("Using default input file [%s]\n", opts.sparse_mat_filename);
+        else
+            printf("Could not find sysMatA.mtx\n");
+    }
+    else
+    {
+        printf("Using input file [%s]\n", opts.sparse_mat_filename);
+    }
+
+    if (opts.sparse_mat_filename) {
+        if (loadMMSparseMatrix<double>(opts.sparse_mat_filename, 'd', true, &rowsA, &colsA,
+            &nnzA, &d_csrValA, &d_csrRowPtrA, &d_csrColIndA, true)) {
+            exit(1);
+        }
+        baseA = d_csrRowPtrA[0]; // baseA = {0,1}
+    }
+    else {
+        fprintf(stderr, "Error: input matrix is not provided\n");
+        exit(1);
+    }
+
+    if (rowsA != colsA) {
+        fprintf(stderr, "Error: only support square matrix\n");
+        exit(1);
+    }
+
+    printf("sparse matrix A is %d x %d with %d nonzeros, base=%d\n", rowsA, colsA, nnzA, baseA);
+}
+
 void gpuFactor(csrqrInfo_t d_info, cusolverSpHandle_t cusolverSpH, cusparseMatDescr_t descrA, void* buffer_gpu,
     int rowsA, int colsA, int nnzA, int* d_csrRowPtrA, int* d_csrColIndA, double* d_csrValA)
 {
@@ -301,6 +337,9 @@ int main(int argc, char* argv[])
     parseCommandLineArguments(argc, argv, opts);
 
     findCudaDevice(argc, (const char**)argv);
+
+    loadMatrix(opts, rowsA, colsA, nnzA, 
+        d_csrValA, d_csrRowPtrA, d_csrColIndA, baseA, argv);
 
     if (opts.sparse_mat_filename == NULL)
     {
