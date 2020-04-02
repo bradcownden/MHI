@@ -26,6 +26,7 @@
 #include "helper_cuda.h"
 #include "helper_cusolver.h"
 
+//#define CHECK 0
 
 template <typename T_ELEM>
 int loadMMSparseMatrix(
@@ -416,6 +417,8 @@ int main(int argc, char* argv[])
         h_b[row] = 1.0;
     }
 
+    readB("../Output/Province/system/sysVecB_t0.txt", argv, rowsA, h_b);
+
     memcpy(h_bcopy, h_b, sizeof(double) * rowsA);
 
     auto cpu_start = std::chrono::high_resolution_clock::now(); // CPU timing
@@ -569,7 +572,7 @@ int main(int argc, char* argv[])
         sprintf(bfile, "C:/Users/bradc/Documents/MHI/Output/Province/system/sysVecB_t100%d.txt", bcount);
         readB(bfile, argv, rowsA, h_b);
 
-        checkCudaErrors(cudaMemcpy(h_b, d_b, sizeof(double) * rowsA, cudaMemcpyHostToDevice));
+        checkCudaErrors(cudaMemcpy(d_b, h_b, sizeof(double) * rowsA, cudaMemcpyHostToDevice));
     
         printf("Solve A*x = b with RHS from %s\n", bfile);
 
@@ -579,6 +582,7 @@ int main(int argc, char* argv[])
         // Copy result back
         checkCudaErrors(cudaMemcpy(h_x, d_x, sizeof(double) * rowsA, cudaMemcpyDeviceToHost));
     
+#ifdef CHECK
         // Write out data
         char xfile[500];
         sprintf(xfile, "GPUFactor_t100%d.txt", bcount);
@@ -593,6 +597,7 @@ int main(int argc, char* argv[])
             fprintf(Outfile, "%1.15e\n", h_x[i]);
         }
         fclose(Outfile);
+#endif
     }
     
     /*
