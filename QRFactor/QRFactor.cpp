@@ -246,13 +246,12 @@ void cpuCalc(csrqrInfoHost_t h_info, cusolverSpHandle_t cusolverSpH, cudaStream_
     fclose(Outfile);
 }
 
-void readB(const char* inFile, char* argv[], const int rowsA, double* inPtr) // Read in b vectors
+void readB(char* inFile, char* argv[], const int rowsA, double* inPtr) // Read in b vectors
 {
-    char* bfile = sdkFindFilePath(inFile, argv[0]);
-    if (bfile)
+    if (inFile)
     {
-        printf("Reading file %s\n", bfile);
-        std::ifstream file(bfile);
+        printf("Reading file %s\n", inFile);
+        std::ifstream file(inFile);
         if (file.is_open())
         {
             std::string line;
@@ -273,7 +272,7 @@ void readB(const char* inFile, char* argv[], const int rowsA, double* inPtr) // 
     }
     else
     {
-        printf("\nERROR: couldn't find file %s\n\n", bfile);
+        printf("\nERROR: couldn't find file %s\n\n", inFile);
     }
 }
 
@@ -338,8 +337,8 @@ int main(int argc, char* argv[])
 
     findCudaDevice(argc, (const char**)argv);
 
-    loadMatrix(opts, rowsA, colsA, nnzA, 
-        d_csrValA, d_csrRowPtrA, d_csrColIndA, baseA, argv);
+    //loadMatrix(opts, rowsA, colsA, nnzA, 
+    //    d_csrValA, d_csrRowPtrA, d_csrColIndA, baseA, argv);
 
     if (opts.sparse_mat_filename == NULL)
     {
@@ -420,7 +419,7 @@ int main(int argc, char* argv[])
     memcpy(h_bcopy, h_b, sizeof(double) * rowsA);
 
     auto cpu_start = std::chrono::high_resolution_clock::now(); // CPU timing
-
+    /*
     printf("step 2: create opaque info structure\n");
     checkCudaErrors(cusolverSpCreateCsrqrInfoHost(&h_info));
 
@@ -469,20 +468,20 @@ int main(int argc, char* argv[])
     printf("step 7: solve A*x = b \n");
     checkCudaErrors(cusolverSpDcsrqrSolveHost(
         cusolverSpH, rowsA, colsA, h_b, h_x, h_info, buffer_cpu));
-
+    */
     cpuCalc(h_info, cusolverSpH, stream, descrA, rowsA, colsA, nnzA, h_csrRowPtrA,
         h_csrColIndA, h_csrValA, h_b, 0);
-
+    
     auto cpu_stop = std::chrono::high_resolution_clock::now(); // CPU timing stop
     std::chrono::duration<double, std::milli> cpu_time = cpu_stop - cpu_start;
     printf("CPU execution time: %E ms\n", cpu_time.count());
-
-    printf("step 8: evaluate residual r = b - A*x (result on CPU)\n");
+    
+    //printf("step 8: evaluate residual r = b - A*x (result on CPU)\n");
     // use GPU gemv to compute r = b - A*x
     checkCudaErrors(cudaMemcpy(d_csrRowPtrA, h_csrRowPtrA, sizeof(int) * (rowsA + 1), cudaMemcpyHostToDevice));
     checkCudaErrors(cudaMemcpy(d_csrColIndA, h_csrColIndA, sizeof(int) * nnzA, cudaMemcpyHostToDevice));
     checkCudaErrors(cudaMemcpy(d_csrValA, h_csrValA, sizeof(double) * nnzA, cudaMemcpyHostToDevice));
-
+    /*
     checkCudaErrors(cudaMemcpy(d_r, h_bcopy, sizeof(double) * rowsA, cudaMemcpyHostToDevice));
     checkCudaErrors(cudaMemcpy(d_x, h_x, sizeof(double) * colsA, cudaMemcpyHostToDevice));
 
@@ -510,7 +509,7 @@ int main(int argc, char* argv[])
     printf("(CPU) |A| = %E \n", A_inf);
     printf("(CPU) |x| = %E \n", x_inf);
     printf("(CPU) |b - A*x|/(|A|*|x|) = %E \n", r_inf / (A_inf * x_inf));
-
+    */
     checkCudaErrors(cudaEventRecord(start)); // Timing for GPU solve
 
     printf("step 9: create opaque info structure\n");
@@ -563,6 +562,40 @@ int main(int argc, char* argv[])
         return 1;
     }
 
+    // Loop to solve multiple data files
+    for (int bcount = 0; bcount < 6; ++bcount)
+    {
+        char bfile[500];
+        sprintf(bfile, "C:/Users/bradc/Documents/MHI/Output/Province/system/sysVecB_t100%d.txt", bcount);
+        readB(bfile, argv, rowsA, h_b);
+
+        checkCudaErrors(cudaMemcpy(h_b, d_b, sizeof(double) * rowsA, cudaMemcpyHostToDevice));
+    
+        printf("Solve A*x = b with RHS from %s\n", bfile);
+
+        checkCudaErrors(cusolverSpDcsrqrSolve(
+            cusolverSpH, rowsA, colsA, d_b, d_x, d_info, buffer_gpu));
+
+        // Copy result back
+        checkCudaErrors(cudaMemcpy(h_x, d_x, sizeof(double) * rowsA, cudaMemcpyDeviceToHost));
+    
+        // Write out data
+        char xfile[500];
+        sprintf(xfile, "GPUFactor_t100%d.txt", bcount);
+        FILE* Outfile = fopen(xfile, "w");
+        if (Outfile == NULL)
+        {
+            std::cout << "\nERROR: Couldn't write to file " << Outfile << "\n";
+            exit(1);
+        }
+        for (int i = 0; i < rowsA; ++i)
+        {
+            fprintf(Outfile, "%1.15e\n", h_x[i]);
+        }
+        fclose(Outfile);
+    }
+    
+    /*
     printf("step 14: solve A*x = b \n");
     checkCudaErrors(cusolverSpDcsrqrSolve(
         cusolverSpH, rowsA, colsA, d_b, d_x, d_info, buffer_gpu));
@@ -582,18 +615,19 @@ int main(int argc, char* argv[])
         d_x,
         &one,
         d_r));
+    */
 
     checkCudaErrors(cudaEventRecord(stop)); // Stop timing and calculate GPU execution time
     checkCudaErrors(cudaEventSynchronize(stop));
     checkCudaErrors(cudaEventElapsedTime(&gpu_time, start, stop));
     printf("GPU execution timing: %E ms\n", gpu_time);
 
-    checkCudaErrors(cudaMemcpy(h_r, d_r, sizeof(double) * rowsA, cudaMemcpyDeviceToHost));
+    //checkCudaErrors(cudaMemcpy(h_r, d_r, sizeof(double) * rowsA, cudaMemcpyDeviceToHost));
 
-    r_inf = vec_norminf(rowsA, h_r);
+    //r_inf = vec_norminf(rowsA, h_r);
 
-    printf("(GPU) |b - A*x| = %E \n", r_inf);
-    printf("(GPU) |b - A*x|/(|A|*|x|) = %E \n", r_inf / (A_inf * x_inf));
+    //printf("(GPU) |b - A*x| = %E \n", r_inf);
+    //printf("(GPU) |b - A*x|/(|A|*|x|) = %E \n", r_inf / (A_inf * x_inf));
 
     if (cusolverSpH) { checkCudaErrors(cusolverSpDestroy(cusolverSpH)); }
     if (cusparseH) { checkCudaErrors(cusparseDestroy(cusparseH)); }
