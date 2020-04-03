@@ -41,6 +41,13 @@ int loadMMSparseMatrix(
     int** aColInd,
     int extendSymMatrix);
 
+bool fileExists(const char* fname)
+{
+    std::ifstream ifile(fname);
+    bool out = (ifile) ? true : false;
+    return out;
+}
+
 void UsageSP(void)
 {
     printf("<options>\n");
@@ -536,42 +543,52 @@ int main(int argc, char* argv[])
     printf("GPU factor timing: %E ms\n", gpufactor_time);
 
     // Loop to solve multiple data files
-    for (int bcount = 0; bcount < 6; ++bcount)
+    int bcount = 0;
+    while (true)
     {
         char bfile[500];
-        sprintf(bfile, "C:/Users/bradc/Documents/MHI/Output/Province/system/sysVecB_t100%d.txt", bcount);
-        readB(bfile, argv, rowsA, h_b);
+        sprintf(bfile, "C:/Users/bradc/Documents/MHI/Output/Province/system/sysVecB_t%d.txt", bcount);
+        // Check if file exists
+        if (fileExists(bfile))
+        {
+            readB(bfile, argv, rowsA, h_b);
 
-        // Solve timing
-        checkCudaErrors(cudaEventRecord(solve_start));
-        checkCudaErrors(cudaMemcpy(d_b, h_b, sizeof(double) * rowsA, cudaMemcpyHostToDevice));
-        // printf("Solve A*x = b with RHS from %s\n", bfile);
-        checkCudaErrors(cusolverSpDcsrqrSolve(
-            cusolverSpH, rowsA, colsA, d_b, d_x, d_info, buffer_gpu));
-        checkCudaErrors(cudaMemcpy(h_x, d_x, sizeof(double) * rowsA, cudaMemcpyDeviceToHost));
-        checkCudaErrors(cudaEventRecord(solve_stop));
-        checkCudaErrors(cudaEventSynchronize(solve_stop));
-        checkCudaErrors(cudaEventElapsedTime(&gpusolve_time, solve_start, solve_stop));
-        printf("GPU solve time: %E ms\n", gpusolve_time);
+            // Solve timing
+            checkCudaErrors(cudaEventRecord(solve_start));
+            checkCudaErrors(cudaMemcpy(d_b, h_b, sizeof(double) * rowsA, cudaMemcpyHostToDevice));
+            // printf("Solve A*x = b with RHS from %s\n", bfile);
+            checkCudaErrors(cusolverSpDcsrqrSolve(
+                cusolverSpH, rowsA, colsA, d_b, d_x, d_info, buffer_gpu));
+            checkCudaErrors(cudaMemcpy(h_x, d_x, sizeof(double) * rowsA, cudaMemcpyDeviceToHost));
+            checkCudaErrors(cudaEventRecord(solve_stop));
+            checkCudaErrors(cudaEventSynchronize(solve_stop));
+            checkCudaErrors(cudaEventElapsedTime(&gpusolve_time, solve_start, solve_stop));
+            printf("GPU solve time: %E ms\n", gpusolve_time);
+            ++bcount;
 
 #ifdef CHECK
-        // Write out GPU data
-        char xfile[500];
-        sprintf(xfile, "GPUFactor_t100%d.txt", bcount);
-        FILE* Outfile = fopen(xfile, "w");
-        if (Outfile == NULL)
-        {
-            std::cout << "\nERROR: Couldn't write to file " << Outfile << "\n";
-            exit(1);
-        }
-        for (int i = 0; i < rowsA; ++i)
-        {
-            fprintf(Outfile, "%1.15e\n", h_x[i]);
-        }
-        fclose(Outfile);
-
-
+            // Write out GPU data
+            char xfile[500];
+            sprintf(xfile, "GPUFactor_t100%d.txt", bcount);
+            FILE* Outfile = fopen(xfile, "w");
+            if (Outfile == NULL)
+            {
+                std::cout << "\nERROR: Couldn't write to file " << Outfile << "\n";
+                exit(1);
+            }
+            for (int i = 0; i < rowsA; ++i)
+            {
+                fprintf(Outfile, "%1.15e\n", h_x[i]);
+            }
+            fclose(Outfile);
 #endif
+
+        }
+        else
+        {
+            printf("End of file directory. Exiting program.\n");
+            break;
+        }
     }
 
     /*
