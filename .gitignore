@@ -358,4 +358,9 @@ CPUFactor*.txt
 GPUFactor*.txt
 
 # Reports directory
-Reports/
+Reports/*.aux
+Reports/*.synctex.gz
+Reports/*.out
+Reports/*.log
+Reports/*.fls
+Reports/*.fdb_latexmk

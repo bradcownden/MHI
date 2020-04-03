@@ -1,0 +1,67 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{fullpage}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{lastpage}
+\usepackage[inline]{enumitem}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{ colorlinks=true, linkcolor=blue, linkbordercolor={0 0 1}}
+
+\renewcommand{\arraystretch}{1.5}
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+\pagestyle{fancyplain}
+\lhead{Brad Cownden}
+\chead{}
+\rhead{\today}
+\cfoot{\small\thepage}
+\headsep 36pt
+
+\begin{document}
+\vspace{.2in}
+\begin{center}
+    {\bf GPU Solutions for PSCAD: IT17112}
+\end{center}
+
+	\vspace{.25in}
+
+\begin{tabular}{| p{0.2\textwidth} | p{0.75\textwidth} |}
+	\hline
+	Reporting Period & March 1, 2020 - March 27, 2020 \\ \hline
+
+	Activities & \begin{enumerate*}
+	\item[\tiny\textbullet] Transfered project onto research laptop, installed Visual Studio IDE \newline
+	\item[\tiny\textbullet] Contacted NVIDIA rep about low-level sparse matrix factoring functions \newline
+	\item[\tiny\textbullet] Ran low-level QR factorization program on \emph{Province} data for single time step \newline
+	\item[\tiny\textbullet] Time for QR factorization plus single time step solve ~35 ms
+	\end{enumerate*} \\ \hline
+
+	Issues & \begin{enumerate*}
+	\item[\tiny\textbullet] None
+	\end{enumerate*} \\ \hline
+
+	Milestones \newline Accomplished & \begin{enumerate*}
+	\item[\tiny\textbullet] First timings with low-level functions optimized for sparse matrices
+	\end{enumerate*} \\ \hline
+
+	Milestones Not \newline Accomplished & \begin{enumerate*}
+	\item[\tiny\textbullet] None
+	\end{enumerate*} \\ \hline
+
+	Next Week's \newline Milestones & \begin{enumerate*}
+	\item[\tiny\textbullet] Extend solve for single time step to include all \emph{Province} time steps
+	\end{enumerate*} \\ \hline
+
+	Forwarded Issues & \begin{enumerate*}
+	\item[\tiny\textbullet] None
+	\end{enumerate*} \\ \hline
+\end{tabular}
+
+
+\end{document}
