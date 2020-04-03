@@ -11,7 +11,7 @@
 \usepackage{hyperref}
 \hypersetup{ colorlinks=true, linkcolor=blue, linkbordercolor={0 0 1}}
 
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.75}
 
 \setlength{\parindent}{0.0in}
 \setlength{\parskip}{0.05in}
@@ -19,7 +19,7 @@
 \pagestyle{fancyplain}
 \lhead{Brad Cownden}
 \chead{}
-\rhead{March 27, 2020}
+\rhead{April 2, 2020}
 \cfoot{\small\thepage}
 \headsep 36pt
 
@@ -33,13 +33,14 @@
 
 \begin{tabular}{| p{0.2\textwidth} | p{0.75\textwidth} |}
 	\hline
-	Reporting Period & March 1, 2020 - March 27, 2020 \\ \hline
+	Reporting Period & March 28, 2020 - April 2, 2020 \\ \hline
 
 	Activities & \begin{enumerate*}
-	\item[\tiny\textbullet] Transfered project onto research laptop, installed Visual Studio IDE \newline
-	\item[\tiny\textbullet] Contacted NVIDIA rep about low-level sparse matrix factoring functions \newline
-	\item[\tiny\textbullet] Ran low-level QR factorization program on \emph{Province} data for single time step \newline
-	\item[\tiny\textbullet] Time for QR factorization plus single time step solve ~35 ms
+	\item[\tiny\textbullet] Added timing functions to GPU factoring, GPU solving to generate new timing sets \newline
+  \item[\tiny\textbullet] Added check macro for comparing GPU result with CPU result \newline
+	\item[\tiny\textbullet] Collected new timings for Debug build with six sample data sets on laptop (NVIDIA Quadro TRX 3000) \newline
+	\item[\tiny\textbullet] QR factorization time: $\sim 11$ms \newline
+  \item[\tiny\textbullet] Average QP solve time (per time step): $\sim 2.4$ms
 	\end{enumerate*} \\ \hline
 
 	Issues & \begin{enumerate*}
@@ -47,15 +48,15 @@
 	\end{enumerate*} \\ \hline
 
 	Milestones \newline Accomplished & \begin{enumerate*}
-	\item[\tiny\textbullet] First timings with low-level functions optimized for sparse matrices
-	\end{enumerate*} \\ \hline
+	\item[\tiny\textbullet] Collected timings for single time step solve and QR factoring
+  \end{enumerate*} \\ \hline
 
 	Milestones Not \newline Accomplished & \begin{enumerate*}
 	\item[\tiny\textbullet] None
 	\end{enumerate*} \\ \hline
 
 	Next Week's \newline Milestones & \begin{enumerate*}
-	\item[\tiny\textbullet] Extend solve for single time step to include all \emph{Province} time steps
+	\item[\tiny\textbullet] Run new code version on all \emph{Province} data
 	\end{enumerate*} \\ \hline
 
 	Forwarded Issues & \begin{enumerate*}
