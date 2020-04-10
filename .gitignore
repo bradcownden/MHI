@@ -337,7 +337,6 @@ ASALocalRun/
 healthchecksdb
 
 # Data directories that are not useful
-MHI/
 Output/Cigre_brenchmark/
 Output/Inrush/
 Output/.*
