@@ -341,7 +341,12 @@ MHI/
 Output/Cigre_brenchmark/
 Output/Inrush/
 Output/.*
-Output/MHI/
+Output/*.aux
+Output/*.synctex.gz
+Output/*.out
+Output/*.log
+Output/*.fls
+Output/*.fdb_latexmk
 Output/Province/.*
 Output/Province/1*
 Output/Province/2*
