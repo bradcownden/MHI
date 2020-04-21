@@ -26,8 +26,6 @@
 #include "helper_cuda.h"
 #include "helper_cusolver.h"
 
-//#define CHECK 0
-
 template <typename T_ELEM>
 int loadMMSparseMatrix(
     char* filename,
@@ -140,18 +138,15 @@ void gpuFactor(csrqrInfo_t d_info, cusolverSpHandle_t cusolverSpH, cusparseMatDe
     }
 }
 
-void cpuCalc(csrqrInfoHost_t h_info, cusolverSpHandle_t cusolverSpH, cudaStream_t stream, cusparseMatDescr_t descrA,
-    int rowsA, int colsA, int nnzA, int* h_csrRowPtrA, int* h_csrColIndA, double* h_csrValA, double* h_b, const int tstep)
+void cpuFactor(csrqrInfoHost_t h_info, cusolverSpHandle_t cusolverSpH, cudaStream_t stream, cusparseMatDescr_t descrA,
+    int rowsA, int colsA, int nnzA, int* h_csrRowPtrA, int* h_csrColIndA, double* h_csrValA)
 {
     int singularity = 0;
     const double tol = 1.0e-16;
     const double zero = 0.0;
-    void* buffer_cpu = NULL;
     size_t size_qr = 0;
     size_t size_internal = 0;
-    double* h_x = NULL;
-
-    h_x = (double*)malloc(sizeof(double) * colsA);
+    void* buffer_cpu = NULL;
 
     // Create opaque info structure
     checkCudaErrors(cusolverSpCreateCsrqrInfoHost(&h_info));
@@ -174,7 +169,8 @@ void cpuCalc(csrqrInfoHost_t h_info, cusolverSpHandle_t cusolverSpH, cudaStream_
         free(buffer_cpu);
     }
     buffer_cpu = (void*)malloc(sizeof(char) * size_qr);
-    assert(NULL != buffer_cpu);
+    //assert(NULL != buffer_cpu);
+    std::cout << "buffer_cpu allocated to " << buffer_cpu << std::endl;
 
     // Set up, then factor
     checkCudaErrors(cusolverSpDcsrqrSetupHost(
@@ -198,24 +194,6 @@ void cpuCalc(csrqrInfoHost_t h_info, cusolverSpHandle_t cusolverSpH, cudaStream_
         exit(1);
     }
 
-    // Solve the linear equation
-    checkCudaErrors(cusolverSpDcsrqrSolveHost(
-        cusolverSpH, rowsA, colsA, h_b, h_x, h_info, buffer_cpu));
-
-    // Write the solution to file for later comparison
-    char Outname[500];
-    sprintf(Outname, "CPUFactor_t%d.txt", tstep);
-    FILE* Outfile = fopen(Outname, "w");
-    if (Outfile == NULL)
-    {
-        std::cout << "\nERROR: Couldn't write to file " << Outfile << "\n";
-        exit(1);
-    }
-    for (int i = 0; i < rowsA; ++i)
-    {
-        fprintf(Outfile, "%1.15e\n", h_b[i]);
-    }
-    fclose(Outfile);
 }
 
 void readB(char* inFile, char* argv[], const int rowsA, double* inPtr) // Read in b vectors
@@ -256,8 +234,8 @@ int main(int argc, char* argv[])
     cudaStream_t stream = NULL;
     cusparseMatDescr_t descrA = NULL; // A is a base-0 general matrix
 
-    csrqrInfoHost_t h_info = NULL; // opaque info structure for LU with parital pivoting
-    csrqrInfo_t d_info = NULL; // opaque info structure for LU with parital pivoting
+    csrqrInfoHost_t h_info = NULL; // opaque info structure for QR factoring
+    csrqrInfo_t d_info = NULL; // opaque info structure for QR factoring
 
     cudaEvent_t factor_start, factor_stop, solve_start, solve_stop; // CUDA timing events
     cudaEventCreate(&factor_start);
@@ -284,8 +262,8 @@ int main(int argc, char* argv[])
 
     size_t size_internal = 0;
     size_t size_chol = 0; // size of working space for csrlu
-    void* buffer_cpu = NULL; // working space for Cholesky
-    void* buffer_gpu = NULL; // working space for Cholesky
+    void* buffer_cpu = NULL; // working space for factoring
+    void* buffer_gpu = NULL; // working space for factoring
 
     int* d_csrRowPtrA = NULL; // <int> n+1
     int* d_csrColIndA = NULL; // <int> nnzA
@@ -304,10 +282,13 @@ int main(int argc, char* argv[])
     int singularity = 0;
     const double tol = 1.e-16;
 
-    double x_inf = 0.0; // |x|
-    double r_inf = 0.0; // |r|
-    double A_inf = 0.0; // |A|
+    const int checkFreq = 1;
+    const int checkTot = 100;
 
+    // Initialize random number for checks
+    srand(time(NULL));
+
+    // Initial matrix read
     parseCommandLineArguments(argc, argv, opts);
 
     findCudaDevice(argc, (const char**)argv);
@@ -383,27 +364,28 @@ int main(int argc, char* argv[])
     checkCudaErrors(cudaMalloc((void**)&d_b, sizeof(double) * rowsA));
     checkCudaErrors(cudaMalloc((void**)&d_r, sizeof(double) * rowsA));
 
+    /*
     for (int row = 0; row < rowsA; row++)
     {
         h_b[row] = 1.0;
     }
+    */
 
-    readB("../Output/Province/system/sysVecB_t0.txt", argv, rowsA, h_b);
+    //readB("../Output/Province/system/sysVecB_t0.txt", argv, rowsA, h_b);
 
-    memcpy(h_bcopy, h_b, sizeof(double) * rowsA);
+    //memcpy(h_bcopy, h_b, sizeof(double) * rowsA);
 
-    //auto cpu_start = std::chrono::high_resolution_clock::now(); // CPU timing
-    /*
-    printf("step 2: create opaque info structure\n");
+    // Do CPU factoring for checking solutions later
+    auto cpu_start = std::chrono::high_resolution_clock::now();
+
+    printf("CPU factoring...\n");
     checkCudaErrors(cusolverSpCreateCsrqrInfoHost(&h_info));
 
-    printf("step 3: analyze qr(A) to know structure of L\n");
     checkCudaErrors(cusolverSpXcsrqrAnalysisHost(
         cusolverSpH, rowsA, colsA, nnzA,
         descrA, h_csrRowPtrA, h_csrColIndA,
         h_info));
 
-    printf("step 4: workspace for qr(A)\n");
     checkCudaErrors(cusolverSpDcsrqrBufferInfoHost(
         cusolverSpH, rowsA, colsA, nnzA,
         descrA, h_csrValA, h_csrRowPtrA, h_csrColIndA,
@@ -417,20 +399,17 @@ int main(int argc, char* argv[])
     buffer_cpu = (void*)malloc(sizeof(char) * size_chol);
     assert(NULL != buffer_cpu);
 
-    printf("step 5: compute A = L*L^T \n");
     checkCudaErrors(cusolverSpDcsrqrSetupHost(
         cusolverSpH, rowsA, colsA, nnzA,
         descrA, h_csrValA, h_csrRowPtrA, h_csrColIndA,
         zero,
         h_info));
-
     checkCudaErrors(cusolverSpDcsrqrFactorHost(
         cusolverSpH, rowsA, colsA, nnzA,
         NULL, NULL,
         h_info,
         buffer_cpu));
 
-    printf("step 6: check if the matrix is singular \n");
     checkCudaErrors(cusolverSpDcsrqrZeroPivotHost(
         cusolverSpH, h_info, tol, &singularity));
 
@@ -439,17 +418,17 @@ int main(int argc, char* argv[])
         return 1;
     }
 
+    /*
     printf("step 7: solve A*x = b \n");
     checkCudaErrors(cusolverSpDcsrqrSolveHost(
         cusolverSpH, rowsA, colsA, h_b, h_x, h_info, buffer_cpu));
     */
-    cpuCalc(h_info, cusolverSpH, stream, descrA, rowsA, colsA, nnzA, h_csrRowPtrA,
-        h_csrColIndA, h_csrValA, h_b, 0);
 
-    //auto cpu_stop = std::chrono::high_resolution_clock::now(); // CPU timing stop
-    //std::chrono::duration<double, std::milli> cpu_time = cpu_stop - cpu_start;
-    //printf("CPU execution time: %E ms\n", cpu_time.count());
+    auto cpu_stop = std::chrono::high_resolution_clock::now(); // CPU timing stop
+    std::chrono::duration<double, std::milli> cpu_time = cpu_stop - cpu_start;
+    printf("CPU factoring time: %E ms\n", cpu_time.count());
 
+   
     //printf("step 8: evaluate residual r = b - A*x (result on CPU)\n");
     // use GPU gemv to compute r = b - A*x
 
@@ -489,9 +468,9 @@ int main(int argc, char* argv[])
     printf("(CPU) |b - A*x|/(|A|*|x|) = %E \n", r_inf / (A_inf * x_inf));
     */
 
-    checkCudaErrors(cudaEventRecord(factor_start)); // Timing for GPU solve
-
     printf("Beginning GPU factoring...\n");
+
+    checkCudaErrors(cudaEventRecord(factor_start)); // Timing for GPU solve
 
     // Create opaque data structure
     checkCudaErrors(cusolverSpCreateCsrqrInfo(&d_info));
@@ -540,7 +519,7 @@ int main(int argc, char* argv[])
     checkCudaErrors(cudaEventRecord(factor_stop)); // Stop timing and calculate GPU execution time
     checkCudaErrors(cudaEventSynchronize(factor_stop));
     checkCudaErrors(cudaEventElapsedTime(&gpufactor_time, factor_start, factor_stop));
-    printf("GPU factor timing: %E ms\n", gpufactor_time);
+    printf("GPU factoring time: %E ms\n", gpufactor_time);
 
     // Loop to solve multiple data files
     int bcount = 0;
@@ -566,23 +545,44 @@ int main(int argc, char* argv[])
             printf("GPU solve time: %E ms\n", gpusolve_time);
             ++bcount;
 
-#ifdef CHECK
-            // Write out GPU data
-            char xfile[500];
-            sprintf(xfile, "GPUFactor_t100%d.txt", bcount);
-            FILE* Outfile = fopen(xfile, "w");
-            if (Outfile == NULL)
+            // Use random number generator to create spot checks of cpu
+            // vs gpu results
+            int v = rand() % checkTot;
+            if (v <= checkFreq)
             {
-                std::cout << "\nERROR: Couldn't write to file " << Outfile << "\n";
-                exit(1);
-            }
-            for (int i = 0; i < rowsA; ++i)
-            {
-                fprintf(Outfile, "%1.15e\n", h_x[i]);
-            }
-            fclose(Outfile);
-#endif
+                // Write out GPU data
+                char xfile[500];
+                sprintf(xfile, "GPUFactor_t%d.txt", bcount);
+                FILE* GPU_out = fopen(xfile, "w");
+                if (GPU_out == NULL)
+                {
+                   std::cout << "\nERROR: Couldn't write to file " << xfile << "\n";
+                   exit(1);
+                }
+                for (int i = 0; i < rowsA; ++i)
+                {
+                    fprintf(GPU_out, "%1.15e\n", h_x[i]);
+                }
+                fclose(GPU_out);
 
+                // Do CPU solving and write out
+                checkCudaErrors(cusolverSpDcsrqrSolveHost(
+                    cusolverSpH, rowsA, colsA, h_b, h_x, h_info, buffer_cpu));
+
+                char Outname[500];
+                sprintf(Outname, "CPUFactor_t%d.txt", bcount);
+                FILE* CPU_out = fopen(Outname, "w");
+                if (CPU_out == NULL)
+                {
+                    std::cout << "\nERROR: Couldn't write to file " << Outname << "\n";
+                    exit(1);
+                }
+                for (int i = 0; i < rowsA; ++i)
+                {
+                    fprintf(CPU_out, "%1.15e\n", h_x[i]);
+                }
+                fclose(CPU_out);
+            }
         }
         else
         {

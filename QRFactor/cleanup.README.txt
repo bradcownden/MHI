@@ -1,0 +1,3 @@
+The cleanup batch file "cleanup.bat" is executed by double clicking the icon. It clears the 
+data files "CPUFactor_t*.txt" and "GPUFactor_t*.txt" that are produced during debugging of
+QRFactor.
