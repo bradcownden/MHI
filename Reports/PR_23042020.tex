@@ -1,0 +1,69 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{fullpage}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{lastpage}
+\usepackage[inline]{enumitem}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, linkbordercolor={0 0 1}}
+
+\renewcommand{\arraystretch}{1.75}
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+\pagestyle{fancyplain}
+\lhead{Brad Cownden}
+\chead{}
+\rhead{April 23, 2020}
+\cfoot{\small\thepage}
+\headsep 36pt
+
+\begin{document}
+\vspace{.2in}
+\begin{center}
+    {\bf GPU Solutions for PSCAD: IT17112}
+\end{center}
+
+	\vspace{.25in}
+
+\begin{tabular}{| p{0.2\textwidth} | p{0.75\textwidth} |}
+	\hline
+	Reporting Period & April 16, 2020 - April 23, 2020 \\ \hline
+
+	Activities & \begin{enumerate*}
+	\item[\tiny\textbullet] Used Docker to construct a CUDA environment for developing QRFactor on U of W servers. See \emph{Issues} for more. \newline
+  \item[\tiny\textbullet] Wrote in randomized check of GPU code output against CPU versions of the CUDA commands. \newline
+  \item[\tiny\textbullet] The output of the checks are then read and compared in a separate program. \newline
+  \item[\tiny\textbullet] Investigated possible discrepancy between CPU and GPU outputs. Further examination is required.
+	\end{enumerate*} \\ \hline
+
+	Issues & \begin{enumerate*}
+	\item[\tiny\textbullet] Docker environment is currently not able to launch NSight Eclipse, which is needed for building QRFactor. This needs to be resolved before full runs can be done on the U of W servers. \newline
+  \item[\tiny\textbullet] When comparing the output of the CPU and GPU versions of QRFactor, there was a strange increase in the relative differences between the two data sets in rows 2208-2210 in all the sampled data sets. At this point, more investigation is required to know whether the error exists with either the GPU or CPU method.
+	\end{enumerate*} \\ \hline
+
+	Milestones \newline Accomplished & \begin{enumerate*}
+	\item[\tiny\textbullet] Coded and ran a comparison between the output from CPU functions and GPU functions in QRFactor. Aside from the anomalies mentioned above, results differed on the order of $10^{-10}$. \newline
+  \item[\tiny\textbullet] Created a CUDA container for development and linked it to the local directories for easier access to existing data.
+  \end{enumerate*} \\ \hline
+
+	Milestones Not \newline Accomplished & \begin{enumerate*}
+	\item[\tiny\textbullet] Run QRFactor on U of W servers
+	\end{enumerate*} \\ \hline
+
+	Next Week's \newline Milestones & \begin{enumerate*}
+	\item[\tiny\textbullet] Investigate discrepancies between CPU and GPU methods for possible issues with GPU program. Ideally, compare against the known solutions to the system provided by MHI. \newline
+  \item[\tiny\textbullet] Resolve X11 forwarding from within container in order to run NSight Eclipse through Docker.
+	\end{enumerate*} \\ \hline
+
+	Forwarded Issues & \begin{enumerate*}
+	\item[\tiny\textbullet] None
+	\end{enumerate*} \\ \hline
+\end{tabular}
+
+\end{document}
