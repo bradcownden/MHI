@@ -38,7 +38,8 @@ def computeRelativeDifference(cpu_data, gpu_data):
         else:
             rel.append(abs(cpu_data[i] - gpu_data[i]) / max(abs(cpu_data[i]),
             abs(gpu_data[i])))
-    return np.sqrt(np.sum([val * val for val in rel]))
+    print(np.max(rel))
+    return np.sum(rel) / len(cpu_data)
 
 def timeCheck(cpu_file, gpu_file):
     # Ensure the time steps of either file match
