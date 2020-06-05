@@ -380,3 +380,4 @@ settings.json
 # Accuracy testing
 MHICompare.py
 RelativeDifference.py
+QRFactor/CPUvs*.pdf
