@@ -357,10 +357,14 @@ Output/Province/7*
 Output/Province/8*
 Output/Province/9*
 Output/Province/system/
+GPU_Data/
 
 # Data files produced for validation
 CPUFactor*.txt
 GPUFactor*.txt
+
+# MHI data dump
+GPU_Data.7z
 
 # Reports directory
 Reports/*.aux
@@ -369,3 +373,10 @@ Reports/*.out
 Reports/*.log
 Reports/*.fls
 Reports/*.fdb_latexmk
+
+# VS Code settings
+settings.json
+
+# Accuracy testing
+MHICompare.py
+RelativeDifference.py
