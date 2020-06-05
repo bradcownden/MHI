@@ -1,0 +1,1 @@
+docker run -it --rm --name cuda -e DISPLAY=192.168.0.14:0.0 ubuntu:cuda
