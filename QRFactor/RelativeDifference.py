@@ -1,4 +1,5 @@
 import numpy as np
+import random as ran
 import os, re
 import matplotlib.pyplot as plt
 
@@ -54,23 +55,39 @@ def readFile(infile):
 ###############################################
 
 def main():
-    # Read the files at a specific time and determine
+    # Read the three random output files and determine
     # the absolute normalized difference
-    files = ["Factor_t850.txt"]
-    colours = ['b', 'r', 'g']
+    ran.seed()
+    gfiles = [f for f in os.listdir() if "GPUFactor_t" in f]
+    cfiles = [f for f in os.listdir() if "CPUFactor_t" in f]
+    tvals = []
+
+    for file in gfiles:
+        t = file.split("_t")[1]
+        tvals.append(int(t.split(".txt")[0]))
+    ts = [ran.randint(1, len(tvals)) for i in range(3)]
+    tvals = [tvals[i] for i in ts]
+    print(tvals)
+    files = []
+    for t in tvals:
+        files.append([(f,g) for f,g in zip(cfiles, gfiles) if\
+            str(t) in f and str(t) in g])
+    files = [a for b in files for a in b]
+    print(files)
+
     plt.figure()
+    colours = ['r', 'b', 'g']
     for i in range(len(files)):
-        gpu_file = 'GPU' + files[i]
-        cpu_file = 'CPU' + files[i]
-        print("Reading data files %s and %s..." % (cpu_file, gpu_file))
-        gpu_data = readFile(gpu_file)
-        cpu_data = readFile(cpu_file)
+        pair = files[i]
+        print("Reading data files %s and %s..." % (pair[0], pair[1]))
+        gpu_data = readFile(pair[0])
+        cpu_data = readFile(pair[1])
 
         print("Done! Computing normalized absolute differences...")
         data = computeRelativeDifference(cpu_data, gpu_data)
 
         print("Done! Plotting data...")
-        plotlabel = files[i].split("_t")[1]
+        plotlabel = pair[0].split("_t")[1]
         plotlabel = plotlabel.split(".txt")[0]
         # Legend entry
         plt.plot(0, threshold, '.' + colours[i], markersize=2,
@@ -84,7 +101,7 @@ def main():
     plt.yscale('log')
     plt.legend()
     print("Done!")
-    plt.savefig("CPUvsGPUFactor2.pdf", transparent=True, format='pdf',
+    plt.savefig("CPUvsGPURelativeDifference_tolE-15.pdf", format='pdf',
         bbox_inches='tight')
     plt.show()
 
