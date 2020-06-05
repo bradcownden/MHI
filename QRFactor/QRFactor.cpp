@@ -548,7 +548,8 @@ int main(int argc, char* argv[])
             // Use random number generator to create spot checks of cpu
             // vs gpu results
             int v = rand() % checkTot;
-            if (v <= checkFreq)
+            //if (v <= checkFreq)
+            if (TRUE)
             {
                 // Write out GPU data
                 char xfile[500];
