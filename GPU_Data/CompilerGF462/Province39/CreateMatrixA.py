@@ -166,6 +166,7 @@ def main(dirpath):
     # Read through the folders and store all non-zero matrix values
     # in column-major format for each time step
     time = 0
+    loop_break = False
     while(True):
         print("Reading sparse matrices at time t = %d..." % time)
         Msys = {}
@@ -183,12 +184,14 @@ def main(dirpath):
                 print("ERROR: size of matrix in folder %d should be %d x %d" %\
                     (i, sizes[i - 1], sizes[i - 1]))
                 print("But read %d x %d instead" % (readSize, readSize))
+                loop_break = True
                 break
             # If not every folder has matrix data for all the time steps, stop the process
             elif not matrix:
                 print("ERROR: incomplete matrix data for time =", time + 1)
                 print("Only %d/39 folders contain matrix data at this time step" % i)
                 print("WARNING: full system data ONLY for t <", time)
+                loop_break = True
                 break
             else:
                 # Sort by subsystem
@@ -211,6 +214,12 @@ def main(dirpath):
                     minor_offset += key[1]
                 # Increment major offset value for the next directory
                 major_offset += sizes[i - 1]
+        
+        # If the loop_break has been triggered, stop the whole program
+        if loop_break:
+            break
+        else:
+            pass
         
         print("Done. Writing to file...")
 
