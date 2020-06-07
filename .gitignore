@@ -357,7 +357,32 @@ Output/Province/7*
 Output/Province/8*
 Output/Province/9*
 Output/Province/system/
-GPU_Data/
+GPU_Data/CompilerComp
+GPU_Data/CompilerComparison.gif
+GPU_Data/CompilerIF15/Province_AllinOne
+GPU_Data/CompilerIF15/Sys*.txt
+GPU_Data/CompilerIF15/Province39/1*
+GPU_Data/CompilerIF15/Province39/2*
+GPU_Data/CompilerIF15/Province39/3*
+GPU_Data/CompilerIF15/Province39/4*
+GPU_Data/CompilerIF15/Province39/5*
+GPU_Data/CompilerIF15/Province39/6*
+GPU_Data/CompilerIF15/Province39/7*
+GPU_Data/CompilerIF15/Province39/8*
+GPU_Data/CompilerIF15/Province39/9*
+GPU_Data/CompilerGF462/Province_AllinOne
+GPU_Data/CompilerGF462/Province39/1*
+GPU_Data/CompilerGF462/Province39/2*
+GPU_Data/CompilerGF462/Province39/3*
+GPU_Data/CompilerGF462/Province39/4*
+GPU_Data/CompilerGF462/Province39/5*
+GPU_Data/CompilerGF462/Province39/6*
+GPU_Data/CompilerGF462/Province39/7*
+GPU_Data/CompilerGF462/Province39/8*
+GPU_Data/CompilerGF462/Province39/9*
+GPU_Data/CompilerGF462/Sys*.txt
+GPU_Data/Compiler*/cleanup.bat
+GPU_Data/Compiler*/cleanup.README.txt
 
 # Data files produced for validation
 CPUFactor*.txt
