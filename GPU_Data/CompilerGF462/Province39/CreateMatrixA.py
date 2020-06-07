@@ -5,6 +5,7 @@ at each time step
 
 import numpy as np
 import os, sys, datetime
+import matplotlib.pyplot as plt
 
 #####################################
 #####################################
@@ -142,7 +143,7 @@ def main(dirpath):
     # This will not change with time
     sizes = []
     for i in range(1,40):
-        target = "./" + str(i) + "/matrixA.txt"
+        target = dirpath + "Province39/" + str(i) + "/matrixA.txt"
         if os.path.isfile(target):
             sizes.append(getTotalMatrixSize(target))
         else:
@@ -165,73 +166,72 @@ def main(dirpath):
     # Read through the folders and store all non-zero matrix values
     # in column-major format for each time step
     time = 0
-    while(time < 3):
-        print("Reading sparse matrices at time t =", time)
+    while(True):
+        print("Reading sparse matrices at time t = %d..." % time)
+        Msys = {}
+        major_offset = 0
+        minor_offset = 0
+        # For each folder, read the submatrices at a specific time step
+        # and reassemble them. The row and column positions of the non-zero
+        # matrix elements will be key values to a system matrix
         for i in range(1,40):
-            matrix = readMatrix(dirpath + str(i) + "/MatrixA.txt", time, sizes[i-1])
+            matrix = readMatrix(dirpath + "Province39/" + str(i) + "/MatrixA.txt", time, sizes[i-1])
+            minor_offset = 0
             # Test the matrix size against what it is supposed to be
             readSize = np.sum([key[-1] for key in matrix.keys()])
             if readSize != sizes[i-1]:
                 print("ERROR: size of matrix in folder %d should be %d x %d" %\
                     (i, sizes[i - 1], sizes[i - 1]))
                 print("But read %d x %d instead" % (readSize, readSize))
+                break
+            # If not every folder has matrix data for all the time steps, stop the process
+            elif not matrix:
+                print("ERROR: incomplete matrix data for time =", time + 1)
+                print("Only %d/39 folders contain matrix data at this time step" % i)
+                print("WARNING: full system data ONLY for t <", time)
+                break
             else:
-                print("Read %d/matrixA.txt for time t = %d" % (i, time))
+                # Sort by subsystem
+                # Increment the minor offset by the size of each subsystem so that
+                # the row position is major_offset + minor_offset
+                for key in sorted(matrix.keys()):
+                    # Reassemble the submatrix into the correct shape
+                    data = np.reshape(matrix.get(key), (key[1], key[1]))
+                    """
+                    print("%d/MatrixA.txt subsystem %d:" % (i, key[0]))
+                    print(data)
+                    """
+                    # Get the positions of the non-zero values
+                    ivals, jvals = np.nonzero(data)
+                    # Non-zero element indicies are the key values for the system matrix (base 1)
+                    for x, y in zip(ivals, jvals):
+                        Msys[(x + major_offset + minor_offset + 1,
+                        y + major_offset + minor_offset + 1)] = data[x, y]
+                    # Increment minor offset value for next subsystem
+                    minor_offset += key[1]
+                # Increment major offset value for the next directory
+                major_offset += sizes[i - 1]
+        
+        print("Done. Writing to file...")
+
+        # System matrix now assembled; write to file in MM Format starting with t = 1
+        nnz = len(Msys)
+        mfile = dirpath + "sysMatA_t" + str(time + 1) + ".mtx"
+        writeIntro(mfile, np.sum(sizes), nnz)
+
+        # Write to file 
+        ii = 0
+        for key in sorted(Msys.keys(), key = lambda x: x[1]):
+            print("\rWrote %d%% of data." % int(ii / nnz * 100), end='')
+            writeData(mfile, key[0], key[1], Msys.get(key))
+            ii += 1
+
+        print("\rWrote 100% of data.", end='')
+        print("\nDone. Wrote", mfile)
 
         time += 1
 
     """
-    # Load non-zero values for each submatrix in each directory into a system
-    # M matrix
-    print("Loading sparse matrices.")
-    Msys = {}
-    major_offset = 0
-    for i in range(1,40):
-        target = "./" + str(i) + "/matrixA.txt"
-        # Get the submatrices for the current directory
-        if os.path.isfile(target):
-            submat = readMatrix(target)
-            minor_offset = 0
-            # Increment the minor offset by the size of each subsystem,
-            # so that the row position is major_offset + minor_offset + i
-            for key in sorted(submat.keys()):
-                temp = submat.get(key)[1:][0]
-                # Get the indices of the nonzero values
-                ivals, jvals = np.nonzero(temp)
-                # Nonzero indices are Msys key (base 1), element value is Msys value
-                for x,y in zip(ivals, jvals):
-                    Msys[(x + major_offset + minor_offset + 1, 
-                    y + major_offset + minor_offset + 1)] = temp[x][y]
-                # Increment minor offset value for next submatrix
-                minor_offset += submat.get(key)[0]
-            # Increment major offset value for next directory
-            major_offset += sizes[i - 1]
-        else:
-            print("Could not find", target)
-    
-
-    # Write header of .mtx output file
-    m_out = "sysMatA.mtx"
-    sys_size = sum(sizes)
-    writeIntro(m_out, sys_size, len(Msys))
-    
-    
-    # Sort system matrix into column-major format
-    # and write to file in .mtx format
-    print("Writing system matrix to", m_out)
-    ii = 0
-    total = len(Msys)
-    for key in sorted(Msys.keys(), key = lambda x: x[1]):
-        print("\rFinished %d%%..." % int(ii / total * 100), end='')
-        row, col = key
-        val = Msys.get(key)
-        #writeData(m_out, row, col, val)
-        ii += 1
-
-    print("\rFinished 100%...", end='')
-    print("\nDone.")
-    
-    
     # Hardcoded test feature
     #mode = "test"
     mode = "run"
@@ -293,7 +293,7 @@ def main(dirpath):
 #####################################
 #####################################
 
-main("C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/Province39/")
+main("C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/")
 
 #####################################
 #####################################
