@@ -44,14 +44,14 @@ def relativeDifference(c1_data, c2_data):
 ##############################
 ##############################
 
-def main():
+def main(filetype):
     # Get lists of files from each directory
-    c1_dir = "./CompilerGF462/Province_AllinOne"
-    c2_dir = "./CompilerIF15/Province_AllinOne"
+    c1_dir = "./CompilerGF462/"
+    c2_dir = "./CompilerIF15/"
     c1_list = os.listdir(c1_dir)
     c2_list = os.listdir(c2_dir)
-    c1_list = [c1_dir + "/" + f for f in c1_list if "VecX_t" in f]
-    c2_list = [c2_dir + "/" + f for f in c2_list if "VecX_t" in f]
+    c1_list = [c1_dir + "/" + f for f in c1_list if filetype + '_t' in f]
+    c2_list = [c2_dir + "/" + f for f in c2_list if filetype + '_t' in f]
     # Sort by timestep
     c1_list.sort(key=lambda f: int(re.sub('\D', '', f)))
     c2_list.sort(key=lambda f: int(re.sub('\D', '', f)))
@@ -73,11 +73,12 @@ def main():
             plt.yscale('log')
             plt.ylim(0.5, 7E3)
             plt.ylabel("Counts")
-            plt.xlabel("Relative Difference in Vector_X Values \n" + 
+            plt.xlabel("Relative Difference in " + filetype + "\n" + 
                 "Between Compilers")
             plt.tight_layout()
-            outfile = "CompilerComp_t" + t + ".png"
+            outfile = "CompilerComp/CompilerComp_t" + t + ".png"
             plt.savefig(outfile)
+            #plt.show()
             plt.clf()
         else:
             pass
@@ -86,7 +87,7 @@ def main():
 ##############################
 ##############################
 
-main()
+main("SysVecX")
 
 ##############################
 ##############################

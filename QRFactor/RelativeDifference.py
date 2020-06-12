@@ -73,6 +73,11 @@ def main():
         files.append([(f,g) for f,g in zip(cfiles, gfiles) if\
             str(t) in f and str(t) in g])
     files = [a for b in files for a in b]
+    # Trim extra matches
+    if len(files) > 3:
+        files = files[:3]
+    else:
+        pass
     print(files)
 
     plt.figure()
@@ -101,7 +106,7 @@ def main():
     plt.yscale('log')
     plt.legend()
     print("Done!")
-    plt.savefig("CPUvsGPURelativeDifference_tolE-15.pdf", format='pdf',
+    plt.savefig("CPUvsGPURelativeDifference_CompilerGF462.pdf", format='pdf',
         bbox_inches='tight')
     plt.show()
 
