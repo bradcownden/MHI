@@ -295,11 +295,11 @@ int main(int argc, char* argv[])
 
     if (opts.sparse_mat_filename == NULL)
     {
-        opts.sparse_mat_filename = sdkFindFilePath("sysMatA.mtx", argv[0]);
+        opts.sparse_mat_filename = sdkFindFilePath("sysMatA_t1.mtx", argv[0]);
         if (opts.sparse_mat_filename != NULL)
             printf("Using default input file [%s]\n", opts.sparse_mat_filename);
         else
-            printf("Could not find sysMatA.mtx\n");
+            printf("Could not find sysMatA_t1.mtx\n");
     }
     else
     {
@@ -522,11 +522,12 @@ int main(int argc, char* argv[])
     printf("GPU factoring time: %E ms\n", gpufactor_time);
 
     // Loop to solve multiple data files
-    int bcount = 0;
+    int bcount = 1;
     while (true)
     {
         char bfile[500];
-        sprintf(bfile, "C:/Users/bradc/Documents/MHI/Output/Province/system/sysVecB_t%d.txt", bcount);
+        // Updated data (non-ill defined system)
+        sprintf(bfile, "C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_t%d.txt", bcount);
         // Check if file exists
         if (fileExists(bfile))
         {
@@ -543,7 +544,6 @@ int main(int argc, char* argv[])
             checkCudaErrors(cudaEventSynchronize(solve_stop));
             checkCudaErrors(cudaEventElapsedTime(&gpusolve_time, solve_start, solve_stop));
             printf("GPU solve time: %E ms\n", gpusolve_time);
-            ++bcount;
 
             // Use random number generator to create spot checks of cpu
             // vs gpu results
@@ -584,6 +584,7 @@ int main(int argc, char* argv[])
                 }
                 fclose(CPU_out);
             }
+            ++bcount;
         }
         else
         {

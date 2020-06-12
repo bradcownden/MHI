@@ -13,7 +13,10 @@
   <ItemGroup>
     <ClCompile Include="mmio.c" />
     <ClCompile Include="mmio_wrapper.cpp" />
-    <ClCompile Include="QRFactor.cpp" />
+    <ClCompile Include="QRFactor.cpp">
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</PreprocessToFile>
+      <PreprocessKeepComments Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</PreprocessKeepComments>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mmio.h" />
