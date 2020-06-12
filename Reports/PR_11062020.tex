@@ -1,0 +1,95 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{fullpage}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{lastpage}
+\usepackage[inline]{enumitem}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\hypersetup{colorlinks=true, linkcolor=blue, linkbordercolor={0 0 1}}
+
+\renewcommand{\arraystretch}{1.75}
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+\newcommand{\its}{\item[\tiny\textbullet]}
+
+\pagestyle{fancyplain}
+\lhead{Brad Cownden}
+\chead{}
+\rhead{June 11, 2020}
+\cfoot{\small\thepage}
+\headsep 36pt
+
+\begin{document}
+\vspace{.2in}
+\begin{center}
+    {\bf GPU Solutions for PSCAD: IT17112}
+\end{center}
+
+	\vspace{.25in}
+
+\begin{tabular}{| p{0.2\textwidth} | p{0.75\textwidth} |}
+	\hline
+	Reporting Period & May 28, 2020 - June 11, 2020 \\ \hline
+
+	Activities & \begin{enumerate*}
+	\item[\tiny\textbullet] Received updated \emph{Province} data that removed known issue of
+  high level of difference between three lines of data. Data was processed and used
+  to calculate new result vectors for the analysis below. \newline
+  \its To establish the degree of accuracy in the GPU-based solving method, QRFactor can solve
+  the system using either GPU-based methods or CPU-based methods. These results were compared
+  to each other over all time steps and a histogram of the relative differences between the
+  outputs was made. See figure~\ref{f:cpuvsgpu}. No relative differences greater than 10$^{-5}$
+  were found. \newline
+  \its The relative difference between the data sets $y(t)$ and $x(t)$ is defined as: $\Delta_{rel}(t) = |y(t) - x(t)| / \max(|y(t)|, |x(t)|)$. \newline
+  \its Likewise, the new \emph{Province} data from the two compilers, CompilerIF15 and CompilerGF462,
+  was also compared. We see that there are some relative differences between the data that
+  are larger than 10$^{-1}$. \newline
+  \its Finally, two types of output from QRFactor were compared against the data from the two
+  compilers. The data from CompilerGF462 most closely matches both QRFactor outputs: differences
+  are typically less than 10$^{-7}$, with no values of $\Delta_{rel}$ greater than 10$^{-5}$. \newline
+  \its {\bf Conclusion}: the results from the GPU-based methods of QRFactor are consistent with
+  the results of the GPU-based method, and with the provided output data to an acceptable degree. \newline
+  \its Debugging QRFactor on U~of~W servers. Anticipate new timing data very soon.
+	\end{enumerate*} \\ \hline
+
+	Issues & \begin{enumerate*}
+	\item[\tiny\textbullet] None
+	\end{enumerate*} \\ \hline
+
+	Milestones \newline Accomplished & \begin{enumerate*}
+	\item[\tiny\textbullet] New \emph{Province} data processed and used with QRFactor. \newline
+  \its GPU-based and CPU-based methods in QRFactor produce results consistent with known results.
+  \end{enumerate*} \\ \hline
+
+	Milestones Not \newline Accomplished & \begin{enumerate*}
+	\item[\tiny\textbullet] None
+	\end{enumerate*} \\ \hline
+
+	Next Week's \newline Milestones & \begin{enumerate*}
+  \item[\tiny\textbullet] Full run of new \emph{Province} data on U of W servers.
+	\end{enumerate*} \\ \hline
+
+	Forwarded Issues & \begin{enumerate*}
+	\item[\tiny\textbullet] None
+	\end{enumerate*} \\ \hline
+\end{tabular}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth]{C:/Users/bradc/Documents/MHI/QRFactor/MHI_QRFactor_CrossCompare.pdf}
+    \caption{Cross-comparing the result vectors $\mathbf{X}(t)$ from: CompilerIF15, CompilerGF462,
+    QRFactor CPU method, and QRFactor GPU method. In each case, the relative difference~$\Delta_{rel}(t)$
+    between the data sets was calculated for all time steps in common -- typically 298. A
+    minimum threshold difference of 1.0~x~10$^{-16}$ was used.}
+    \label{f:cpuvsgpu}
+\end{figure}
+
+
+\end{document}

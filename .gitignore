@@ -410,3 +410,4 @@ RelativeDifference.py
 QRFactor/CPUvs*.pdf
 QRFactor/MHI_QRFactor_CrossCompare.pdf
 QRFactor/CPUvsGPUFactor2.pdf
+*.synctex(busy)
