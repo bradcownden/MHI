@@ -1,5 +1,5 @@
 """
-Read Province_AllinOne/VectorX.txt and combine subsystems into a
+Read Province39/folder/VectorX.txt and combine subsystems into a
 total system file at each time step
 """
 import os, re
