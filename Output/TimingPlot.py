@@ -65,20 +65,22 @@ def main(datadir):
     # Laptop timings
     fig_ax1 = fig.add_subplot(gs[0,0:2])
     factor1, solve1 = readData(d1file)
-    fig_ax1.plot(np.arange(len(solve1)), solve1, '.')
+    fig_ax1.plot(np.arange(len(solve1)), solve1, '.', color='C0')
     fig_ax1.set_title(r"Laptop: solve $R\mathbf{X} = \mathbf{B}Q^{-1}$")
-    fig_ax2 = fig.add_subplot(gs[0,-1])
-    fig_ax2.bar(r"$A=QR$", factor1)
-    fig_ax2.set_title(r"Laptop: Factor matrix $A$")
 
     # Cedar timings
-    fig_ax3 = fig.add_subplot(gs[1,0:2])
+    fig_ax2 = fig.add_subplot(gs[1,0:2])
     factor2, solve2 = readData(d2file)
-    fig_ax3.plot(np.arange(len(solve2)), solve2, '.', color='r')
-    fig_ax3.set_title(r"P100 GPU: solve $R\mathbf{X} = \mathbf{B}Q^{-1}$")
-    fig_ax4 = fig.add_subplot(gs[1,-1])
-    fig_ax4.bar(r"$A=QR$", factor2, color='r')
-    fig_ax4.set_title(r"P100 GPU: Factor matrix $A$")
+    fig_ax2.plot(np.arange(len(solve2)), solve2, '.', color='C3')
+    fig_ax2.set_title(r"P100 GPU: solve $R\mathbf{X} = \mathbf{B}Q^{-1}$")
+
+    # Matrix factoring
+    fig_ax3 = fig.add_subplot(gs[:,-1:])
+    fig_ax3.bar(r"$A=QR$", factor1, color='C0', label=r"Laptop")
+    fig_ax3.bar(r"$A=QR$", factor2, color='C3', label=r"P100 GPU")
+    #fig_ax3.set_title(r"Factor matrix $A$")
+    fig_ax3.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc='lower left',
+           ncol=1, mode="expand", borderaxespad=0.)
 
     f_ymax = max(factor1[0], factor2[0])
     f_ymin = min(factor1[0], factor2[0])
@@ -86,13 +88,13 @@ def main(datadir):
     s_ymin = min(np.min(solve1), np.min(solve2))
     
     # Add axis labels
-    for axis in [fig_ax1, fig_ax2, fig_ax3, fig_ax4]:
+    for axis in [fig_ax1, fig_ax2, fig_ax3]:
         axis.set_ylabel("Time (ms)")
         axis.grid(True)
-    for axis in [fig_ax1, fig_ax3]:
+    for axis in [fig_ax1, fig_ax2]:
         axis.set_xlabel("Time Step")
         axis.set_ylim(0.0, s_ymax * 1.1)
-    for axis in [fig_ax2, fig_ax4]:
+    for axis in [fig_ax3]:
         axis.set_ylim(0.0, f_ymax * 1.1)
     
     plt.tight_layout()
