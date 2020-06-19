@@ -549,7 +549,7 @@ int main(int argc, char* argv[])
             // vs gpu results
             int v = rand() % checkTot;
             //if (v <= checkFreq)
-            if (TRUE)
+            if (false)
             {
                 // Write out GPU data
                 char xfile[500];
