@@ -295,7 +295,7 @@ int main(int argc, char* argv[])
 
     if (opts.sparse_mat_filename == NULL)
     {
-        opts.sparse_mat_filename = sdkFindFilePath("sysMatA_t1.mtx", argv[0]);
+        opts.sparse_mat_filename = sdkFindFilePath("sysMatA_n4_t1.mtx", argv[0]);
         if (opts.sparse_mat_filename != NULL)
             printf("Using default input file [%s]\n", opts.sparse_mat_filename);
         else
@@ -527,7 +527,7 @@ int main(int argc, char* argv[])
     {
         char bfile[500];
         // Updated data (non-ill defined system)
-        sprintf(bfile, "C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_t%d.txt", bcount);
+        sprintf(bfile, "C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t%d.txt", bcount);
         // Check if file exists
         if (fileExists(bfile))
         {
