@@ -1,0 +1,606 @@
+GPU Device 0: "Tesla V100-SXM2-32GB" with compute capability 7.0
+
+Using default input file [./sysMatA_n2_t1.mtx]
+step 1: read matrix market format
+sparse matrix A is 14724 x 14724 with 68514 nonzeros, base=1
+CPU factoring...
+CPU factoring time: 2.253341E+01 ms
+Beginning GPU factoring...
+GPU factoring time: 1.913034E+01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t1.txt
+GPU solve time: 7.454720E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t2.txt
+GPU solve time: 8.068800E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t3.txt
+GPU solve time: 7.687360E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t4.txt
+GPU solve time: 7.680000E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t5.txt
+GPU solve time: 7.592320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t6.txt
+GPU solve time: 8.053120E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t7.txt
+GPU solve time: 7.759360E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t8.txt
+GPU solve time: 7.963200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t9.txt
+GPU solve time: 7.949760E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t10.txt
+GPU solve time: 8.062720E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t11.txt
+GPU solve time: 8.017280E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t12.txt
+GPU solve time: 9.119680E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t13.txt
+GPU solve time: 7.805120E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t14.txt
+GPU solve time: 7.659840E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t15.txt
+GPU solve time: 8.020480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t16.txt
+GPU solve time: 7.859200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t17.txt
+GPU solve time: 8.051200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t18.txt
+GPU solve time: 7.837440E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t19.txt
+GPU solve time: 7.849600E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t20.txt
+GPU solve time: 7.613440E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t21.txt
+GPU solve time: 7.636480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t22.txt
+GPU solve time: 8.035840E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t23.txt
+GPU solve time: 7.729280E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t24.txt
+GPU solve time: 7.993280E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t25.txt
+GPU solve time: 8.024320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t26.txt
+GPU solve time: 7.760640E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t27.txt
+GPU solve time: 7.772800E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t28.txt
+GPU solve time: 7.527040E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t29.txt
+GPU solve time: 7.476160E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t30.txt
+GPU solve time: 7.567680E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t31.txt
+GPU solve time: 7.401600E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t32.txt
+GPU solve time: 8.037120E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t33.txt
+GPU solve time: 7.810240E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t34.txt
+GPU solve time: 7.656640E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t35.txt
+GPU solve time: 8.125440E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t36.txt
+GPU solve time: 7.765760E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t37.txt
+GPU solve time: 8.272320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t38.txt
+GPU solve time: 7.795520E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t39.txt
+GPU solve time: 8.096960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t40.txt
+GPU solve time: 7.863680E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t41.txt
+GPU solve time: 8.051520E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t42.txt
+GPU solve time: 8.176960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t43.txt
+GPU solve time: 7.900480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t44.txt
+GPU solve time: 7.727360E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t45.txt
+GPU solve time: 7.435520E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t46.txt
+GPU solve time: 7.555520E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t47.txt
+GPU solve time: 8.137280E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t48.txt
+GPU solve time: 7.856960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t49.txt
+GPU solve time: 7.713920E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t50.txt
+GPU solve time: 7.563200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t51.txt
+GPU solve time: 7.737280E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t52.txt
+GPU solve time: 7.600320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t53.txt
+GPU solve time: 8.044480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t54.txt
+GPU solve time: 7.725440E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t55.txt
+GPU solve time: 7.662400E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t56.txt
+GPU solve time: 8.029440E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t57.txt
+GPU solve time: 8.087360E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t58.txt
+GPU solve time: 7.530880E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t59.txt
+GPU solve time: 7.633920E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t60.txt
+GPU solve time: 2.343680E+00 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t61.txt
+GPU solve time: 8.345280E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t62.txt
+GPU solve time: 7.488960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t63.txt
+GPU solve time: 7.455680E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t64.txt
+GPU solve time: 7.532480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t65.txt
+GPU solve time: 7.941440E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t66.txt
+GPU solve time: 8.029440E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t67.txt
+GPU solve time: 8.041280E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t68.txt
+GPU solve time: 7.742400E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t69.txt
+GPU solve time: 7.655680E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t70.txt
+GPU solve time: 7.577920E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t71.txt
+GPU solve time: 7.595520E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t72.txt
+GPU solve time: 7.575040E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t73.txt
+GPU solve time: 7.497920E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t74.txt
+GPU solve time: 7.768320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t75.txt
+GPU solve time: 7.512640E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t76.txt
+GPU solve time: 7.451200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t77.txt
+GPU solve time: 7.311040E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t78.txt
+GPU solve time: 8.064000E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t79.txt
+GPU solve time: 7.768640E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t80.txt
+GPU solve time: 8.071680E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t81.txt
+GPU solve time: 7.818240E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t82.txt
+GPU solve time: 7.832320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t83.txt
+GPU solve time: 8.075840E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t84.txt
+GPU solve time: 7.800960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t85.txt
+GPU solve time: 7.601920E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t86.txt
+GPU solve time: 7.576000E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t87.txt
+GPU solve time: 7.512000E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t88.txt
+GPU solve time: 7.444480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t89.txt
+GPU solve time: 8.186880E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t90.txt
+GPU solve time: 8.168320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t91.txt
+GPU solve time: 7.829440E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t92.txt
+GPU solve time: 7.627520E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t93.txt
+GPU solve time: 7.560000E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t94.txt
+GPU solve time: 7.658240E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t95.txt
+GPU solve time: 7.543360E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t96.txt
+GPU solve time: 8.159680E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t97.txt
+GPU solve time: 8.014080E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t98.txt
+GPU solve time: 7.957120E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t99.txt
+GPU solve time: 8.052160E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t100.txt
+GPU solve time: 8.104000E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t101.txt
+GPU solve time: 8.137920E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t102.txt
+GPU solve time: 7.846400E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t103.txt
+GPU solve time: 7.600320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t104.txt
+GPU solve time: 8.043840E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t105.txt
+GPU solve time: 7.851840E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t106.txt
+GPU solve time: 7.792640E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t107.txt
+GPU solve time: 8.036800E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t108.txt
+GPU solve time: 7.696960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t109.txt
+GPU solve time: 7.628800E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t110.txt
+GPU solve time: 8.597120E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t111.txt
+GPU solve time: 7.588160E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t112.txt
+GPU solve time: 7.898240E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t113.txt
+GPU solve time: 7.958400E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t114.txt
+GPU solve time: 7.727040E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t115.txt
+GPU solve time: 7.729920E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t116.txt
+GPU solve time: 7.536640E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t117.txt
+GPU solve time: 7.413440E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t118.txt
+GPU solve time: 7.486080E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t119.txt
+GPU solve time: 7.430400E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t120.txt
+GPU solve time: 7.314560E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t121.txt
+GPU solve time: 7.387840E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t122.txt
+GPU solve time: 7.312960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t123.txt
+GPU solve time: 7.228160E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t124.txt
+GPU solve time: 7.384960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t125.txt
+GPU solve time: 7.912960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t126.txt
+GPU solve time: 7.716160E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t127.txt
+GPU solve time: 7.657600E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t128.txt
+GPU solve time: 8.025280E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t129.txt
+GPU solve time: 7.841600E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t130.txt
+GPU solve time: 8.157120E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t131.txt
+GPU solve time: 8.236800E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t132.txt
+GPU solve time: 7.911680E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t133.txt
+GPU solve time: 7.705600E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t134.txt
+GPU solve time: 7.653760E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t135.txt
+GPU solve time: 7.551360E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t136.txt
+GPU solve time: 7.514240E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t137.txt
+GPU solve time: 7.374080E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t138.txt
+GPU solve time: 7.417280E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t139.txt
+GPU solve time: 7.505600E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t140.txt
+GPU solve time: 8.026240E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t141.txt
+GPU solve time: 7.876480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t142.txt
+GPU solve time: 7.600000E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t143.txt
+GPU solve time: 7.615680E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t144.txt
+GPU solve time: 7.396480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t145.txt
+GPU solve time: 7.424000E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t146.txt
+GPU solve time: 7.373760E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t147.txt
+GPU solve time: 7.630400E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t148.txt
+GPU solve time: 7.577600E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t149.txt
+GPU solve time: 7.326720E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t150.txt
+GPU solve time: 7.367360E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t151.txt
+GPU solve time: 7.920000E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t152.txt
+GPU solve time: 7.694080E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t153.txt
+GPU solve time: 8.304320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t154.txt
+GPU solve time: 8.033920E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t155.txt
+GPU solve time: 7.969600E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t156.txt
+GPU solve time: 7.676160E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t157.txt
+GPU solve time: 7.588160E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t158.txt
+GPU solve time: 7.472320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t159.txt
+GPU solve time: 7.596800E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t160.txt
+GPU solve time: 7.416320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t161.txt
+GPU solve time: 7.385920E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t162.txt
+GPU solve time: 8.046400E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t163.txt
+GPU solve time: 8.094720E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t164.txt
+GPU solve time: 7.829760E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t165.txt
+GPU solve time: 7.766400E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t166.txt
+GPU solve time: 8.060480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t167.txt
+GPU solve time: 7.660480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t168.txt
+GPU solve time: 7.683200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t169.txt
+GPU solve time: 7.530240E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t170.txt
+GPU solve time: 7.412160E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t171.txt
+GPU solve time: 7.591360E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t172.txt
+GPU solve time: 8.061120E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t173.txt
+GPU solve time: 7.984320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t174.txt
+GPU solve time: 7.968640E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t175.txt
+GPU solve time: 7.696320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t176.txt
+GPU solve time: 7.570880E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t177.txt
+GPU solve time: 8.064000E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t178.txt
+GPU solve time: 7.723520E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t179.txt
+GPU solve time: 7.525760E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t180.txt
+GPU solve time: 7.584320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t181.txt
+GPU solve time: 7.340800E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t182.txt
+GPU solve time: 8.051520E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t183.txt
+GPU solve time: 8.074880E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t184.txt
+GPU solve time: 8.068800E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t185.txt
+GPU solve time: 8.111360E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t186.txt
+GPU solve time: 7.810240E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t187.txt
+GPU solve time: 7.567360E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t188.txt
+GPU solve time: 7.648640E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t189.txt
+GPU solve time: 7.535040E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t190.txt
+GPU solve time: 7.473280E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t191.txt
+GPU solve time: 7.429120E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t192.txt
+GPU solve time: 7.294080E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t193.txt
+GPU solve time: 7.396800E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t194.txt
+GPU solve time: 7.389760E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t195.txt
+GPU solve time: 7.261440E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t196.txt
+GPU solve time: 8.188160E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t197.txt
+GPU solve time: 8.111680E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t198.txt
+GPU solve time: 9.835840E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t199.txt
+GPU solve time: 7.856960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t200.txt
+GPU solve time: 7.805440E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t201.txt
+GPU solve time: 7.717120E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t202.txt
+GPU solve time: 7.875840E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t203.txt
+GPU solve time: 7.447680E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t204.txt
+GPU solve time: 7.852480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t205.txt
+GPU solve time: 8.072960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t206.txt
+GPU solve time: 8.040640E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t207.txt
+GPU solve time: 8.079360E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t208.txt
+GPU solve time: 7.809920E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t209.txt
+GPU solve time: 7.624640E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t210.txt
+GPU solve time: 7.630080E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t211.txt
+GPU solve time: 7.386880E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t212.txt
+GPU solve time: 7.471680E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t213.txt
+GPU solve time: 7.296000E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t214.txt
+GPU solve time: 7.910080E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t215.txt
+GPU solve time: 7.613120E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t216.txt
+GPU solve time: 7.604800E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t217.txt
+GPU solve time: 7.666240E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t218.txt
+GPU solve time: 7.521280E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t219.txt
+GPU solve time: 7.562240E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t220.txt
+GPU solve time: 7.497600E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t221.txt
+GPU solve time: 8.023360E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t222.txt
+GPU solve time: 8.051200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t223.txt
+GPU solve time: 7.960640E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t224.txt
+GPU solve time: 7.716480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t225.txt
+GPU solve time: 8.276160E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t226.txt
+GPU solve time: 7.726080E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t227.txt
+GPU solve time: 7.589440E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t228.txt
+GPU solve time: 7.555520E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t229.txt
+GPU solve time: 7.515200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t230.txt
+GPU solve time: 7.332480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t231.txt
+GPU solve time: 7.629440E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t232.txt
+GPU solve time: 7.466880E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t233.txt
+GPU solve time: 7.438400E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t234.txt
+GPU solve time: 7.336000E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t235.txt
+GPU solve time: 7.200960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t236.txt
+GPU solve time: 7.312640E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t237.txt
+GPU solve time: 7.314560E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t238.txt
+GPU solve time: 7.363200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t239.txt
+GPU solve time: 7.229760E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t240.txt
+GPU solve time: 7.268800E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t241.txt
+GPU solve time: 7.472320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t242.txt
+GPU solve time: 7.944960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t243.txt
+GPU solve time: 7.691200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t244.txt
+GPU solve time: 7.886400E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t245.txt
+GPU solve time: 7.802240E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t246.txt
+GPU solve time: 7.621120E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t247.txt
+GPU solve time: 7.619200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t248.txt
+GPU solve time: 7.529600E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t249.txt
+GPU solve time: 7.529920E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t250.txt
+GPU solve time: 8.095040E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t251.txt
+GPU solve time: 7.694720E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t252.txt
+GPU solve time: 7.622400E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t253.txt
+GPU solve time: 7.499200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t254.txt
+GPU solve time: 7.404480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t255.txt
+GPU solve time: 7.488320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t256.txt
+GPU solve time: 8.150720E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t257.txt
+GPU solve time: 7.791360E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t258.txt
+GPU solve time: 7.697600E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t259.txt
+GPU solve time: 7.615040E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t260.txt
+GPU solve time: 7.418880E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t261.txt
+GPU solve time: 7.452160E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t262.txt
+GPU solve time: 7.367680E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t263.txt
+GPU solve time: 7.662400E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t264.txt
+GPU solve time: 7.998720E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t265.txt
+GPU solve time: 7.772800E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t266.txt
+GPU solve time: 7.688000E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t267.txt
+GPU solve time: 7.595200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t268.txt
+GPU solve time: 8.028480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t269.txt
+GPU solve time: 7.768320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t270.txt
+GPU solve time: 7.747840E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t271.txt
+GPU solve time: 7.792960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t272.txt
+GPU solve time: 7.619200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t273.txt
+GPU solve time: 8.065600E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t274.txt
+GPU solve time: 7.672320E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t275.txt
+GPU solve time: 7.585600E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t276.txt
+GPU solve time: 7.541120E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t277.txt
+GPU solve time: 7.719360E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t278.txt
+GPU solve time: 7.515200E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t279.txt
+GPU solve time: 8.032960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t280.txt
+GPU solve time: 7.706240E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t281.txt
+GPU solve time: 7.691520E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t282.txt
+GPU solve time: 7.618560E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t283.txt
+GPU solve time: 7.426880E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t284.txt
+GPU solve time: 7.425280E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t285.txt
+GPU solve time: 7.353600E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t286.txt
+GPU solve time: 7.383680E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t287.txt
+GPU solve time: 7.324480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t288.txt
+GPU solve time: 7.257280E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t289.txt
+GPU solve time: 7.314880E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t290.txt
+GPU solve time: 7.150400E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t291.txt
+GPU solve time: 7.227840E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t292.txt
+GPU solve time: 7.240960E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t293.txt
+GPU solve time: 7.314560E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t294.txt
+GPU solve time: 7.300800E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t295.txt
+GPU solve time: 7.445440E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t296.txt
+GPU solve time: 7.132480E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t297.txt
+GPU solve time: 7.171520E-01 ms
+Reading file /home/bradc/project/bradc/MHI/SysVecB_n2_t298.txt
+GPU solve time: 7.142080E-01 ms
+End of file directory. Exiting program.

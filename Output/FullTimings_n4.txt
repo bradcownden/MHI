@@ -1,0 +1,607 @@
+GPU Device 0: "Turing" with compute capability 7.5
+
+sdkFindFilePath <sysMatA_n4_t1.mtx> in ./
+Using default input file [./sysMatA_n4_t1.mtx]
+step 1: read matrix market format
+sparse matrix A is 29448 x 29448 with 137028 nonzeros, base=1
+CPU factoring...
+CPU factoring time: 2.676760E+01 ms
+Beginning GPU factoring...
+GPU factoring time: 4.099344E+01 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t1.txt
+GPU solve time: 9.243104E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t2.txt
+GPU solve time: 9.312352E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t3.txt
+GPU solve time: 9.188864E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t4.txt
+GPU solve time: 9.197568E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t5.txt
+GPU solve time: 9.151520E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t6.txt
+GPU solve time: 9.136640E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t7.txt
+GPU solve time: 9.243136E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t8.txt
+GPU solve time: 9.087648E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t9.txt
+GPU solve time: 9.098912E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t10.txt
+GPU solve time: 9.125888E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t11.txt
+GPU solve time: 9.143744E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t12.txt
+GPU solve time: 9.090848E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t13.txt
+GPU solve time: 9.105792E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t14.txt
+GPU solve time: 9.109792E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t15.txt
+GPU solve time: 9.058976E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t16.txt
+GPU solve time: 9.114272E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t17.txt
+GPU solve time: 9.113632E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t18.txt
+GPU solve time: 9.090112E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t19.txt
+GPU solve time: 9.134656E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t20.txt
+GPU solve time: 9.122688E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t21.txt
+GPU solve time: 9.117952E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t22.txt
+GPU solve time: 9.178720E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t23.txt
+GPU solve time: 9.088032E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t24.txt
+GPU solve time: 9.110112E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t25.txt
+GPU solve time: 9.139136E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t26.txt
+GPU solve time: 9.097184E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t27.txt
+GPU solve time: 9.122944E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t28.txt
+GPU solve time: 9.109632E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t29.txt
+GPU solve time: 9.081216E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t30.txt
+GPU solve time: 9.060448E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t31.txt
+GPU solve time: 9.144288E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t32.txt
+GPU solve time: 9.210464E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t33.txt
+GPU solve time: 9.079008E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t34.txt
+GPU solve time: 9.100672E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t35.txt
+GPU solve time: 9.124960E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t36.txt
+GPU solve time: 9.117664E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t37.txt
+GPU solve time: 9.070624E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t38.txt
+GPU solve time: 9.111296E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t39.txt
+GPU solve time: 9.076192E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t40.txt
+GPU solve time: 9.190720E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t41.txt
+GPU solve time: 9.084928E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t42.txt
+GPU solve time: 9.140224E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t43.txt
+GPU solve time: 9.099264E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t44.txt
+GPU solve time: 9.075840E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t45.txt
+GPU solve time: 9.107872E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t46.txt
+GPU solve time: 9.122784E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t47.txt
+GPU solve time: 9.085664E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t48.txt
+GPU solve time: 9.121792E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t49.txt
+GPU solve time: 9.128192E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t50.txt
+GPU solve time: 9.220480E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t51.txt
+GPU solve time: 9.078816E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t52.txt
+GPU solve time: 9.107040E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t53.txt
+GPU solve time: 9.142272E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t54.txt
+GPU solve time: 9.085632E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t55.txt
+GPU solve time: 9.066496E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t56.txt
+GPU solve time: 9.108288E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t57.txt
+GPU solve time: 9.202080E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t58.txt
+GPU solve time: 9.077792E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t59.txt
+GPU solve time: 9.062208E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t60.txt
+GPU solve time: 9.114304E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t61.txt
+GPU solve time: 9.105408E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t62.txt
+GPU solve time: 9.119744E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t63.txt
+GPU solve time: 9.101888E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t64.txt
+GPU solve time: 9.137152E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t65.txt
+GPU solve time: 9.123936E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t66.txt
+GPU solve time: 9.039872E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t67.txt
+GPU solve time: 9.103424E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t68.txt
+GPU solve time: 9.121728E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t69.txt
+GPU solve time: 9.201536E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t70.txt
+GPU solve time: 9.213920E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t71.txt
+GPU solve time: 9.125824E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t72.txt
+GPU solve time: 9.121792E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t73.txt
+GPU solve time: 9.048000E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t74.txt
+GPU solve time: 9.096928E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t75.txt
+GPU solve time: 9.095168E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t76.txt
+GPU solve time: 9.066976E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t77.txt
+GPU solve time: 9.079712E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t78.txt
+GPU solve time: 9.107200E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t79.txt
+GPU solve time: 9.140000E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t80.txt
+GPU solve time: 9.080640E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t81.txt
+GPU solve time: 9.089440E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t82.txt
+GPU solve time: 9.105248E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t83.txt
+GPU solve time: 9.084384E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t84.txt
+GPU solve time: 9.127936E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t85.txt
+GPU solve time: 9.152000E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t86.txt
+GPU solve time: 9.125152E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t87.txt
+GPU solve time: 9.140256E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t88.txt
+GPU solve time: 9.117184E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t89.txt
+GPU solve time: 9.066976E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t90.txt
+GPU solve time: 9.070592E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t91.txt
+GPU solve time: 9.091648E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t92.txt
+GPU solve time: 9.099264E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t93.txt
+GPU solve time: 9.208672E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t94.txt
+GPU solve time: 9.108992E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t95.txt
+GPU solve time: 9.099712E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t96.txt
+GPU solve time: 9.080256E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t97.txt
+GPU solve time: 9.159712E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t98.txt
+GPU solve time: 9.085088E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t99.txt
+GPU solve time: 9.120192E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t100.txt
+GPU solve time: 9.129280E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t101.txt
+GPU solve time: 9.080896E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t102.txt
+GPU solve time: 9.095712E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t103.txt
+GPU solve time: 9.084992E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t104.txt
+GPU solve time: 9.114176E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t105.txt
+GPU solve time: 9.106912E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t106.txt
+GPU solve time: 9.075808E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t107.txt
+GPU solve time: 9.110560E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t108.txt
+GPU solve time: 9.125888E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t109.txt
+GPU solve time: 9.090560E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t110.txt
+GPU solve time: 9.122048E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t111.txt
+GPU solve time: 9.162880E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t112.txt
+GPU solve time: 9.097056E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t113.txt
+GPU solve time: 9.097536E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t114.txt
+GPU solve time: 9.097152E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t115.txt
+GPU solve time: 9.115680E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t116.txt
+GPU solve time: 9.076736E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t117.txt
+GPU solve time: 9.070944E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t118.txt
+GPU solve time: 9.105376E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t119.txt
+GPU solve time: 9.091232E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t120.txt
+GPU solve time: 9.185120E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t121.txt
+GPU solve time: 9.081408E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t122.txt
+GPU solve time: 9.109568E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t123.txt
+GPU solve time: 9.052672E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t124.txt
+GPU solve time: 9.109504E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t125.txt
+GPU solve time: 9.146688E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t126.txt
+GPU solve time: 9.127968E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t127.txt
+GPU solve time: 9.176800E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t128.txt
+GPU solve time: 9.089184E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t129.txt
+GPU solve time: 9.078752E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t130.txt
+GPU solve time: 9.111552E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t131.txt
+GPU solve time: 9.150592E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t132.txt
+GPU solve time: 9.103392E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t133.txt
+GPU solve time: 9.242560E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t134.txt
+GPU solve time: 9.099232E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t135.txt
+GPU solve time: 9.068576E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t136.txt
+GPU solve time: 9.058304E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t137.txt
+GPU solve time: 9.084960E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t138.txt
+GPU solve time: 9.105440E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t139.txt
+GPU solve time: 9.123872E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t140.txt
+GPU solve time: 9.058080E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t141.txt
+GPU solve time: 9.085632E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t142.txt
+GPU solve time: 9.086944E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t143.txt
+GPU solve time: 9.092192E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t144.txt
+GPU solve time: 9.120704E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t145.txt
+GPU solve time: 9.073216E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t146.txt
+GPU solve time: 9.130016E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t147.txt
+GPU solve time: 9.150464E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t148.txt
+GPU solve time: 9.099584E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t149.txt
+GPU solve time: 9.111872E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t150.txt
+GPU solve time: 9.244416E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t151.txt
+GPU solve time: 9.152640E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t152.txt
+GPU solve time: 9.191264E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t153.txt
+GPU solve time: 9.109216E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t154.txt
+GPU solve time: 9.092448E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t155.txt
+GPU solve time: 9.089120E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t156.txt
+GPU solve time: 9.132032E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t157.txt
+GPU solve time: 9.037280E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t158.txt
+GPU solve time: 9.163584E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t159.txt
+GPU solve time: 9.101120E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t160.txt
+GPU solve time: 9.125152E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t161.txt
+GPU solve time: 9.154560E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t162.txt
+GPU solve time: 9.154560E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t163.txt
+GPU solve time: 9.131936E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t164.txt
+GPU solve time: 9.123840E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t165.txt
+GPU solve time: 9.083424E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t166.txt
+GPU solve time: 9.100384E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t167.txt
+GPU solve time: 9.101472E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t168.txt
+GPU solve time: 9.142272E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t169.txt
+GPU solve time: 9.139328E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t170.txt
+GPU solve time: 9.158656E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t171.txt
+GPU solve time: 9.136352E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t172.txt
+GPU solve time: 9.111584E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t173.txt
+GPU solve time: 9.089312E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t174.txt
+GPU solve time: 9.127936E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t175.txt
+GPU solve time: 9.293728E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t176.txt
+GPU solve time: 9.112384E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t177.txt
+GPU solve time: 9.134016E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t178.txt
+GPU solve time: 9.113600E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t179.txt
+GPU solve time: 9.140832E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t180.txt
+GPU solve time: 9.103712E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t181.txt
+GPU solve time: 9.109440E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t182.txt
+GPU solve time: 9.048672E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t183.txt
+GPU solve time: 9.146496E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t184.txt
+GPU solve time: 9.140256E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t185.txt
+GPU solve time: 9.101312E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t186.txt
+GPU solve time: 9.106784E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t187.txt
+GPU solve time: 9.111552E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t188.txt
+GPU solve time: 9.105376E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t189.txt
+GPU solve time: 9.080928E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t190.txt
+GPU solve time: 9.112480E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t191.txt
+GPU solve time: 9.082816E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t192.txt
+GPU solve time: 9.230400E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t193.txt
+GPU solve time: 9.098304E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t194.txt
+GPU solve time: 9.082304E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t195.txt
+GPU solve time: 9.099232E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t196.txt
+GPU solve time: 9.086848E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t197.txt
+GPU solve time: 9.117408E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t198.txt
+GPU solve time: 9.116192E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t199.txt
+GPU solve time: 9.090176E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t200.txt
+GPU solve time: 9.076864E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t201.txt
+GPU solve time: 9.056448E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t202.txt
+GPU solve time: 9.106304E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t203.txt
+GPU solve time: 9.099296E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t204.txt
+GPU solve time: 9.066688E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t205.txt
+GPU solve time: 9.100608E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t206.txt
+GPU solve time: 9.090080E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t207.txt
+GPU solve time: 9.107424E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t208.txt
+GPU solve time: 9.087680E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t209.txt
+GPU solve time: 9.141280E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t210.txt
+GPU solve time: 9.034080E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t211.txt
+GPU solve time: 9.128704E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t212.txt
+GPU solve time: 9.094880E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t213.txt
+GPU solve time: 9.158656E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t214.txt
+GPU solve time: 9.089024E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t215.txt
+GPU solve time: 9.134176E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t216.txt
+GPU solve time: 9.101312E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t217.txt
+GPU solve time: 9.137408E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t218.txt
+GPU solve time: 9.131200E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t219.txt
+GPU solve time: 9.097216E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t220.txt
+GPU solve time: 9.111488E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t221.txt
+GPU solve time: 9.148416E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t222.txt
+GPU solve time: 9.097088E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t223.txt
+GPU solve time: 9.084320E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t224.txt
+GPU solve time: 9.142080E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t225.txt
+GPU solve time: 9.093280E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t226.txt
+GPU solve time: 9.096416E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t227.txt
+GPU solve time: 9.132064E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t228.txt
+GPU solve time: 9.094368E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t229.txt
+GPU solve time: 9.089760E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t230.txt
+GPU solve time: 9.128736E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t231.txt
+GPU solve time: 9.119744E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t232.txt
+GPU solve time: 9.152512E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t233.txt
+GPU solve time: 9.133568E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t234.txt
+GPU solve time: 9.117696E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t235.txt
+GPU solve time: 9.128032E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t236.txt
+GPU solve time: 9.074880E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t237.txt
+GPU solve time: 9.109408E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t238.txt
+GPU solve time: 9.094976E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t239.txt
+GPU solve time: 9.250816E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t240.txt
+GPU solve time: 9.127968E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t241.txt
+GPU solve time: 9.097664E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t242.txt
+GPU solve time: 9.101728E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t243.txt
+GPU solve time: 9.143520E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t244.txt
+GPU solve time: 9.085760E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t245.txt
+GPU solve time: 9.088896E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t246.txt
+GPU solve time: 9.076736E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t247.txt
+GPU solve time: 9.105344E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t248.txt
+GPU solve time: 9.132064E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t249.txt
+GPU solve time: 9.316224E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t250.txt
+GPU solve time: 9.264160E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t251.txt
+GPU solve time: 9.105312E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t252.txt
+GPU solve time: 9.122464E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t253.txt
+GPU solve time: 9.086976E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t254.txt
+GPU solve time: 9.259744E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t255.txt
+GPU solve time: 9.134400E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t256.txt
+GPU solve time: 9.135136E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t257.txt
+GPU solve time: 9.160128E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t258.txt
+GPU solve time: 9.184800E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t259.txt
+GPU solve time: 9.122592E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t260.txt
+GPU solve time: 9.093152E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t261.txt
+GPU solve time: 9.121792E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t262.txt
+GPU solve time: 9.140160E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t263.txt
+GPU solve time: 9.084928E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t264.txt
+GPU solve time: 9.121280E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t265.txt
+GPU solve time: 9.105408E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t266.txt
+GPU solve time: 9.123872E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t267.txt
+GPU solve time: 9.072672E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t268.txt
+GPU solve time: 9.128896E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t269.txt
+GPU solve time: 9.110432E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t270.txt
+GPU solve time: 9.105248E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t271.txt
+GPU solve time: 9.066496E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t272.txt
+GPU solve time: 9.126336E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t273.txt
+GPU solve time: 9.091232E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t274.txt
+GPU solve time: 9.138176E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t275.txt
+GPU solve time: 9.069120E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t276.txt
+GPU solve time: 9.132192E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t277.txt
+GPU solve time: 9.197376E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t278.txt
+GPU solve time: 9.062400E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t279.txt
+GPU solve time: 9.064384E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t280.txt
+GPU solve time: 9.140192E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t281.txt
+GPU solve time: 9.096192E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t282.txt
+GPU solve time: 9.260864E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t283.txt
+GPU solve time: 9.090112E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t284.txt
+GPU solve time: 9.115616E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t285.txt
+GPU solve time: 9.143872E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t286.txt
+GPU solve time: 9.092640E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t287.txt
+GPU solve time: 9.095616E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t288.txt
+GPU solve time: 9.117248E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t289.txt
+GPU solve time: 9.109312E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t290.txt
+GPU solve time: 9.097248E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t291.txt
+GPU solve time: 9.099264E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t292.txt
+GPU solve time: 9.128128E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t293.txt
+GPU solve time: 9.112832E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t294.txt
+GPU solve time: 9.125984E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t295.txt
+GPU solve time: 9.084320E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t296.txt
+GPU solve time: 9.110592E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t297.txt
+GPU solve time: 9.133792E+00 ms
+Reading file C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/SysVecB_n4_t298.txt
+GPU solve time: 9.112928E+00 ms
+End of file directory. Exiting program.
