@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mmio.h" />
+    <ClInclude Include="QRFactor_Helper.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{80B83188-B392-4E64-AFD1-94033488F558}</ProjectGuid>
@@ -75,6 +76,9 @@
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
     </CudaCompile>
+    <CustomBuildStep>
+      <Command>-matrix=sysMatA_t1.mtx -data=C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/ -v=1</Command>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -94,6 +98,9 @@
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
     </CudaCompile>
+    <CustomBuildStep>
+      <Command>-matrix=sysMatA_t1.mtx -data=C:/Users/bradc/Documents/MHI/GPU_Data/CompilerGF462/ -v=1</Command>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
