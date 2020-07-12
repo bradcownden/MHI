@@ -412,3 +412,10 @@ QRFactor/MHI_QRFactor_CrossCompare.pdf
 QRFactor/CPUvsGPUFactor2.pdf
 *.synctex(busy)
 Output/FullTimings.pdf
+
+# Example FLOPS calculation lab
+Lab03/*
+
+# Sharing working example of QRFactor with MHI
+QRFactor_v3/
+QRFactor_v3.7z
