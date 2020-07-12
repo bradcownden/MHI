@@ -48,7 +48,13 @@ and \texttt{mmio.c}).
 \section{Running \texttt{QRFactor} in Visual Studio 2019 (VS2019)}
 \label{sec: vs}
 
-Place the system matrix file \texttt{sysMatA.mtx}, the library routines \texttt{mmio.c} and \texttt{mmio.h}, the wrapper \texttt{mmio\_wrapper.cpp}, the source file \texttt{QRFactor.cpp}, and the VS2019 files \texttt{QRFactor.vcxproj} and \texttt{QRFactor.vcxproj.user} in a single directory. The time-dependent input data files can be located in a separate directory that will be set later.
+Place the system matrix file \texttt{sysMatA.mtx}, 
+the library routines \texttt{mmio.c} and \texttt{mmio.h}, 
+the wrapper \texttt{mmio\_wrapper.cpp}, the source and header files \texttt{QRFactor.cpp}
+and \texttt{QRFactor\_Helper.h}, and the VS2019 files \texttt{QRFactor.vcxproj}, 
+\texttt{QRFactor.vcxproj.user}, and \texttt{QRFactor.sln} in a single directory. 
+The time-dependent input data files can be located in a separate directory that can be 
+specified as an input.
 
 There are several project settings that will need to be changed before the program can be built. These will be discussed below, and screen shots of the relevant settings will be included in appendix~\ref{app: VS settings}. The following settings will ensure that VS2019 is able to find the correct library files:
 \begin{itemize}
@@ -59,7 +65,11 @@ There are several project settings that will need to be changed before the progr
 \item Under Linker/Input, ensure {\bf Additional Dependencies} includes cusolver.lib;cusparse.lib; cudart\_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib; \\ shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;\%(AdditionalDependencies).
 \end{itemize}
 
-With these settings in place, the project can be built by selecting Build $\to$ Build QRFactor (Ctrl + B). \texttt{QRFactor.exe} can then be run either through VS2019 or via the command line.
+With these settings in place, the project can be built by selecting Build $\to$ Build 
+QRFactor (Ctrl + B). \texttt{QRFactor.exe} can then be run through VS2019 using the default 
+settings by selecting Debug $\to$ Start Without Debugging (Ctrl + F5). It can also be run 
+via the command line with the appropriate flags; running \texttt{QRFactor.exe} without any
+arguments will list the function options.
 
 \section{Running \texttt{QRFactor} in a Docker Container}
 \label{sec: docker}
