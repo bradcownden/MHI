@@ -29,6 +29,8 @@
 
 #include "QRFactor_Helper.h"
 
+// Ignore unsafe/deprecated warnings for sprintf and fopen
+#pragma warning(disable : 4996)
 
 // For loading the sparse matrix
 template <typename T_ELEM>
@@ -52,6 +54,19 @@ bool fileExists(const char* fname)
     return out;
 }
 
+// Check for existing/applicable GPUs
+bool gpuDetect(int argc, char* argv[], struct QRfactorOpts& qropts)
+{
+    const int t_verb = qropts.verbose; // Get verbosity
+    int device = findCudaDevice(argc, (const char**)argv);
+    if (t_verb > 1)
+    {
+        printf("Detecting CUDA devices...\n");
+
+    }
+
+    return true;
+}
 // Usage instructions for command line execution
 void UsageSP(void)
 {
