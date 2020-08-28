@@ -58,11 +58,42 @@ bool fileExists(const char* fname)
 bool gpuDetect(int argc, char* argv[], struct QRfactorOpts& qropts)
 {
     const int t_verb = qropts.verbose; // Get verbosity
-    int device = findCudaDevice(argc, (const char**)argv);
-    if (t_verb > 1)
+    if (t_verb > 1) // Regular verbosity will give device ID with compute capability
     {
         printf("Detecting CUDA devices...\n");
+        findCudaDevice(argc, (const char**)argv);
+    }
+    else if (t_verb == 1) // Minimum verbosity suppresses all output
+    {
+        int devID = 0;
+        if (checkCmdLineFlag(argc, (const char**)argv, "device")) 
+        {
+            devID = getCmdLineArgumentInt(argc, (const char**)argv, "device=");
 
+            if (devID < 0) {
+                printf("Invalid command line parameter for gpuDetect. Expecting 'device='\n ");
+                exit(EXIT_FAILURE);
+            }
+            else {
+                devID = gpuDeviceInit(devID);
+
+                if (devID < 0) {
+                    printf("exiting...\n");
+                    exit(EXIT_FAILURE);
+                }
+            }
+        }
+        else {
+            // Otherwise pick the device with highest Gflops/s
+            devID = gpuGetMaxGflopsDeviceId();
+            checkCudaErrors(cudaSetDevice(devID));
+        }
+    }
+    else
+    {
+        fprintf(stderr, "\nERROR in gpuDetect(): verbosity must be [1,3] but recieved %d\n",
+            t_verb);
+        exit(EXIT_FAILURE);
     }
 
     return true;
@@ -105,7 +136,7 @@ void parseCommandLineArguments(int argc, char* argv[], struct QRfactorOpts& qrop
         }
         else
         {
-            printf("\nIncorrect filename passed to -matrix \n ");
+            printf("\nIncorrect filename passed to -matrix\n ");
             UsageSP();
         }
     }
@@ -122,7 +153,7 @@ void parseCommandLineArguments(int argc, char* argv[], struct QRfactorOpts& qrop
         }
         else
         {
-            printf("\nIncorrect data directory passed to -data \n ");
+            printf("\nIncorrect data directory passed to -data\n ");
             UsageSP();
         }
     }
@@ -132,9 +163,9 @@ void parseCommandLineArguments(int argc, char* argv[], struct QRfactorOpts& qrop
     {
         qropts.verbose = getCmdLineArgumentInt(argc, (const char**)argv, "v");
 
-        if (qropts.verbose == 0)
+        if (qropts.verbose == 0 || qropts.verbose > 3)
         {
-            printf("\nIncorrect verbosity level passed to -v. Defaulting to 1 \n ");
+            printf("\nIncorrect verbosity level passed to -v. Defaulting to 1\n");
             qropts.verbose = 1;
         }
     }
@@ -150,7 +181,6 @@ void parseCommandLineArguments(int argc, char* argv[], struct QRfactorOpts& qrop
         printf("Data directory: %s\n", qropts.data_files);
         printf("Verbosity: %d\n\n", qropts.verbose);
     }
-   
 }
 
 // Read the input data file
@@ -229,18 +259,16 @@ int main(int argc, char* argv[])
 
     
     printf("/********************************************/\n\n");
-    printf("\t Starting QRFactor...\n\n");
+    printf("           Starting QRFactor...\n\n");
     printf("/********************************************/\n\n");
 
     // Get command line arguments
     parseCommandLineArguments(argc, argv, qropts);
     const int verb = qropts.verbose; // Sets the verbosity
 
-    if (verb > 1)
-    {
-        printf("Detecting CUDA devices...\n");
-        findCudaDevice(argc, (const char**)argv);
-    }
+    // Set device to be either the specified device or the best available device
+    gpuDetect(argc, argv, qropts);
+    // findCudaDevice(argc, (const char**)argv);
     
     // Initial matrix read
     if (qropts.sparse_mat_filename == NULL)
