@@ -58,6 +58,7 @@ bool fileExists(const char* fname)
 bool gpuDetect(int argc, char* argv[], struct QRfactorOpts& qropts)
 {
     const int t_verb = qropts.verbose; // Get verbosity
+#ifdef DEBUG
     if (t_verb > 1) // Regular verbosity will give device ID with compute capability
     {
         printf("Detecting CUDA devices...\n");
@@ -95,7 +96,7 @@ bool gpuDetect(int argc, char* argv[], struct QRfactorOpts& qropts)
             t_verb);
         exit(EXIT_FAILURE);
     }
-
+#endif // DEBUG
     return true;
 }
 // Usage instructions for command line execution
@@ -191,7 +192,9 @@ void readB(char* inFile, const int rowsA, double* inPtr, const int v)
         std::ifstream file(inFile);
         if (file.is_open())
         {
+#ifdef DEBUG
             if (v > 1) printf("Reading data from %s\n", inFile);
+#endif // DEBUG
             std::string line;
             std::string::size_type val;
             int count = 0;
@@ -205,7 +208,9 @@ void readB(char* inFile, const int rowsA, double* inPtr, const int v)
     }
     else
     {
+#ifdef DEBUG
         printf("Error: couldn't find file %s\n", inFile);
+#endif // DEBUG
     }
 }
 
@@ -257,10 +262,11 @@ int main(int argc, char* argv[])
     const double tol = 1.e-16; // tolerance for invertibility
     int singularity = 0; // singularity is -1 if A is invertible under tol
 
-    
+#ifdef DEBUG
     printf("/********************************************/\n\n");
     printf("           Starting QRFactor...\n\n");
     printf("/********************************************/\n\n");
+#endif // DEBUG
 
     // Get command line arguments
     parseCommandLineArguments(argc, argv, qropts);
@@ -290,7 +296,9 @@ int main(int argc, char* argv[])
     {
         if (verb > 1)
         {
+#ifdef DEBUG
             printf("Using input file [%s]\n", qropts.sparse_mat_filename);
+#endif // DEBUG
         }
     }
 
@@ -360,23 +368,35 @@ int main(int argc, char* argv[])
     checkCudaErrors(cudaMemcpy(d_csrValA, h_csrValA, sizeof(double) * nnzA, cudaMemcpyHostToDevice));
     checkCudaErrors(cudaMemcpy(d_b, h_bcopy, sizeof(double) * rowsA, cudaMemcpyHostToDevice));
 
+#ifdef DEBUG
     printf("Starting GPU factoring.\n");
+#endif // DEBUG
     
     checkCudaErrors(cudaEventRecord(factor_start)); // Timing for GPU solve
 
-    // Create opaque data structure
+#ifdef DEBUG
     if (verb > 1) printf("Step 1: create opaque matrix data structure\n");
+#endif // DEBUG
+    // Create opaque data structure
     checkCudaErrors(cusolverSpCreateCsrqrInfo(&d_info));
     
-    // Analyze qr(A)
+
+#ifdef DEBUG
     if (verb > 1) printf("Step 2: analyze qr(A)\n");
+#endif // DEBUG
+
+    // Analyze qr(A)
     checkCudaErrors(cusolverSpXcsrqrAnalysis(
         cusolverSpH, rowsA, colsA, nnzA,
         descrA, d_csrRowPtrA, d_csrColIndA,
         d_info));
 
-    // Determine workspace requirement for factoring
+
+#ifdef DEBUG
     if (verb > 1) printf("Step 3: determine device workspace for qr(A)\n");
+#endif // DEBUG
+
+    // Determine workspace requirement for factoring
     checkCudaErrors(cusolverSpDcsrqrBufferInfo(
         cusolverSpH, rowsA, colsA, nnzA,
         descrA, d_csrValA, d_csrRowPtrA, d_csrColIndA,
@@ -384,15 +404,22 @@ int main(int argc, char* argv[])
         &size_internal,
         &size_chol));
 
-    // Allocate buffer
+ 
+#ifdef DEBUG
     if (verb > 1) printf("Step 4: allocate memory on the device for qr(A)\n");
+#endif // DEBUG
+
+    // Allocate buffer
     if (buffer_gpu) {
         checkCudaErrors(cudaFree(buffer_gpu));
     }
     checkCudaErrors(cudaMalloc(&buffer_gpu, sizeof(char) * size_chol));
 
-    // Compute decomposition
+#ifdef DEBUG
     if (verb > 1) printf("Step 5: compute the factored matrices\n");
+#endif // DEBUG
+
+    // Compute decomposition
     checkCudaErrors(cusolverSpDcsrqrSetup(
         cusolverSpH, rowsA, colsA, nnzA,
         descrA, d_csrValA, d_csrRowPtrA, d_csrColIndA,
@@ -404,13 +431,18 @@ int main(int argc, char* argv[])
         d_info,
         buffer_gpu));
 
-    // Check for singularity condition
+#ifdef DEBUG
     if (verb > 1) printf("Step 6: check for singularity\n");
+#endif // DEBUG
+    
+    // Check for singularity condition
     {
         checkCudaErrors(cusolverSpDcsrqrZeroPivot(
             cusolverSpH, d_info, tol, &singularity));
         if (0 <= singularity) {
+#ifdef DEBUG
             fprintf(stderr, "Error: A is not invertible, singularity=%d\n", singularity);
+#endif // DEBUG
             return 1;
         }
     }
@@ -419,10 +451,13 @@ int main(int argc, char* argv[])
     checkCudaErrors(cudaEventRecord(factor_stop)); 
     checkCudaErrors(cudaEventSynchronize(factor_stop));
     checkCudaErrors(cudaEventElapsedTime(&gpufactor_time, factor_start, factor_stop));
+
+#ifdef DEBUG
     if (verb > 1) printf("GPU factoring time: %E ms\n", gpufactor_time);
+    printf("\nUsing factored matrix to solve for output at each time step.\n");
+#endif // DEBUG
 
     // Loop over all input data
-    printf("\nUsing factored matrix to solve for output at each time step.\n");
     int bcount = 1;
     while (true)
     {
@@ -455,9 +490,14 @@ int main(int argc, char* argv[])
             checkCudaErrors(cudaEventRecord(solve_stop));
             checkCudaErrors(cudaEventSynchronize(solve_stop));
             checkCudaErrors(cudaEventElapsedTime(&gpusolve_time, solve_start, solve_stop));
-            if (verb > 1) printf("GPU solve time: %E ms\n", gpusolve_time);
 
+            // Print GPU timing
+#ifdef DEBUG
+            if (verb > 1) printf("GPU solve time: %E ms\n", gpusolve_time);
+#endif // DEBUG
+            
             // Highest verbosity writes the result to file
+#ifdef DEBUG
             if (verb > 2)
             {
                 // Write out GPU data
@@ -479,13 +519,18 @@ int main(int argc, char* argv[])
                 }
                 fclose(GPU_out);
             }
+#endif // DEBUG
+
             // Increment the time step and continue
             ++bcount;
         }
         // If input file does not exist, finish the loop
         else
         {
+#ifdef DEBUG
             printf("\nEnd of directory. Exiting program.\n");
+#endif // DEBUG
+
             break;
         }
     }
