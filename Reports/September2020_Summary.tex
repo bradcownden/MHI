@@ -1,4 +1,5 @@
 \documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
 \usepackage{fullpage}
 \usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{amsmath,amsfonts,amssymb}
@@ -13,9 +14,9 @@
 \usepackage{hyperref}
 \usepackage{titlesec}
 \usepackage{fancyvrb}
-\hypersetup{ colorlinks=true, linkcolor=blue, linkbordercolor={0 0 1}}
+\hypersetup{colorlinks=true, linkcolor=blue, linkbordercolor={0 0 1}}
 
-\renewcommand{\arraystretch}{1.5}
+%\renewcommand{\arraystretch}{1.5}
 \titlespacing*{\section}{0pt}{0.65\baselineskip}{0.5\baselineskip}
 
 \setlength{\parindent}{0.0in}
@@ -51,7 +52,30 @@ See Chapter 6 in the CUDA \href{https://docs.nvidia.com/cuda/pdf/CUDA_Compiler_D
     \label{f:OO}
 \end{figure}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{C++BuildStructure.png}
+    \caption[]{C++ build structure for a sample program. Image credit \href{https://developer.nvidia.com/blog/separate-compilation-linking-cuda-device-code/}{NVIDIA blog}.}
+    \label{f:example}
+\end{figure}
 
+\begin{figure}
+    \centering
+    \begin{tabular}{p{0.45\textwidth}}
+        objects = main.o particle.o v3.o \\
+         \\
+        all: \$(objects) \\
+        $\quad$ nvcc -arch=sm\_20 \$(objects) -o app \\
+         \\
+        \%.o: \%.cpp \\
+        $\quad$ nvcc -x cu -arch=sm\_20 -I. -dc  \$< -o  \$@ \\
+         \\
+        clean: \\
+        $\quad$ rm -f *.o app \\
+    \end{tabular}
+    \caption{Makefile to compile the sample program outlined in \ref{f:example}.}
+    \label{f:makefile}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
