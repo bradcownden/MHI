@@ -377,6 +377,7 @@ int main(int argc, char* argv[])
 #ifdef DEBUG
     if (verb > 1) printf("Step 1: create opaque matrix data structure\n");
 #endif // DEBUG
+
     // Create opaque data structure
     checkCudaErrors(cusolverSpCreateCsrqrInfo(&d_info));
     
