@@ -419,3 +419,7 @@ Lab03/*
 # Sharing working example of QRFactor with MHI
 QRFactor_v3/
 QRFactor_v3.7z
+QRFactor_Interface.7z
+
+# Ignore the Eigen files
+QRFactor_Interface/eigen-3.3.7
