@@ -343,6 +343,11 @@ int main(int argc, char* argv[])
         checkCudaErrors(cusparseSetMatIndexBase(descrA, CUSPARSE_INDEX_BASE_ZERO));
     }
 
+    std::cout << "cusparseMatrixType_t: " << cusparseGetMatType(descrA) << "\n";
+    std::cout << "cusparseFillMode_t: " << cusparseGetMatFillMode(descrA) << "\n";
+    std::cout << "cusparseDiagType_t: " << cusparseGetMatDiagType(descrA) << "\n";
+    std::cout << "cusparseIndexBase_t: " << cusparseGetMatIndexBase(descrA) << "\n";
+
     // Host variables
     h_x = (double*)malloc(sizeof(double) * colsA);
     h_b = (double*)malloc(sizeof(double) * rowsA);
