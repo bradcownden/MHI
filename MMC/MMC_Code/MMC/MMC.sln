@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MMC", "MMC.vcxproj", "{EEA3BE99-068F-4795-89FA-E1C969EABB41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEA3BE99-068F-4795-89FA-E1C969EABB41}.Debug|x64.ActiveCfg = Debug|x64
+		{EEA3BE99-068F-4795-89FA-E1C969EABB41}.Debug|x64.Build.0 = Debug|x64
+		{EEA3BE99-068F-4795-89FA-E1C969EABB41}.Release|x64.ActiveCfg = Release|x64
+		{EEA3BE99-068F-4795-89FA-E1C969EABB41}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A8743F66-7454-469F-8EF2-E5F881C0DBBD}
+	EndGlobalSection
+EndGlobal

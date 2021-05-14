@@ -1,0 +1,65 @@
+###################
+## 15/04/2021
+###################
+
+MHI provided the code mmc.f that contains two routines: a half-bridge model for each
+sub-module in an MMC with N nodes in either arm, and a full-bridge model for each
+sub-module in an MMC with N nodes in either arm. These routines take in the 
+"required number of inserted cells" (cells in "on" position), an index
+for cell voltages ordered from lowest to highest, the number of cells, the current
+entering the top of the half cell bridge, a 0/1 on/off state variable, and returns
+the firing orders for the top and bottom arms of the MMC. 
+
+I think what they are doing when they "insert" capacitors is to effectively activate
+more sub-modules. They are determining whether to insert or bypass capacitors based
+on the sign of the current. There doesn't seem to be any calculation involving
+resistance or capacitance anywhere.
+
+Finally, the output data at each time step is stored in an external object that is
+part of the include header emtstor.h. This is also used to pull information from 
+the previous time step. 
+
+The method proposed in Zhiyin Zhou's thesis is centered around Hefner's physics-
+based IGBT model and a nonlinear power diode model (see page 58). The entire set
+of N sub-modules is solved for simultaineously on the GPU. In this description, each
+sub-module is governed by an 11x11 partially sparse and nearly block diagonal 
+matrix. Conditioning of this matrix accounts for the majority of the algorithm
+before eventually solving the system using forward or backward subsitution within
+separated blocks. The algorithm for linear behaviour-based sub-module models is also
+addressed with an eye to GPU methods. I think this is equivalent to the half-bridge
+model discussed elsewhere. 
+
+TODO: Ask MHI if adopting the methods from Zhiyin's thesis is the direction they
+want to take. It has the best probability of speed-ups for large N systems. In terms
+of adding GPU acceleration to their existing full- and half-bridge models, we could
+try to rewrite their if-else voltage conditions as some set of matrix operations and
+apply GPU acceleration that way. Since this is supposed to be a research project,
+I'd say go big or go home.
+
+###################
+## 22/04/2021
+###################
+
+MHI has responded and given the OK to persue the method outlined in Zhiyin's thesis.
+It's not clear if full- or half-bridge models are a choice for accuracy, or if they
+represent different physical objects. Rajendra has said that a direct comparison 
+between their models and Hefner's could be made if we can compute the equivalent 
+resistance and voltage for each arm. I'm not sure if this is something that naturally
+comes from Zhiyin's algorithm, but that is far down the road for now.
+
+Next steps: break down Zhiyin's algorithm into pieces and start coding.
+
+###################
+## 13/05/2021
+###################
+
+The sort term goal is to create an efficient algorithm to invert a large, sparse matrix
+-- whether from an MMC model or a EMT model. The advantage with the MMC model in the 
+Hefner description is that each subsystem has the same shape. With this knowledge, we 
+can construct our solution in such a way that we maximize occupancy by calling blocks
+on the GPU with specially chosen sizes. Right now I want to write a kernel that will 
+take a sparse block-diagonal matrix, send it to a block on the GPU, do LU decomp
+in place, and then bring it back where the inverse is reconstructed. This is the first
+part of the solving procedure. The subsequent steps come from forward/backward
+substitution to invert the row and column vectors that border the diagonals. I think
+the thrust package could be helpful, although MHI will want column-major arrays.

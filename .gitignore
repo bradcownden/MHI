@@ -423,3 +423,13 @@ QRFactor_Interface.7z
 
 # Ignore the Eigen files
 QRFactor_Interface/eigen-3.3.7
+
+# Ignore reference material in MMC folder
+MMC/*.pdf
+
+# Ignore boost library
+MMC/MMC_Code/boost_1_76_0
+
+# Ignore report images
+
+Reports/*.png
