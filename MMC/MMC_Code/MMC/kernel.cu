@@ -52,6 +52,26 @@ int main()
         std::cout << "\n";
     }
 
+    // Now, do it on the GPU
+    
+    double* inlist = new double[N * N];
+    int ii = N - 1;
+    for (int i = 0; i < N * N; i++)
+    {
+        if ((i % ii) == 0)
+        {
+            inlist[i] = -1.0;
+            ii--;
+            std::cout << inlist[i] << " ";
+        }
+        else
+        {
+            inlist[i] = 1.0;
+            std::cout << inlist[i] << " ";
+        }
+    }
+    std::cout << "\n";
+    
     return 0;
 
     const int arraySize = 5;

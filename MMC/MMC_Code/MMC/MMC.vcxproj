@@ -81,8 +81,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <CudaCompile Include="kernel.cu" />
+    <CudaCompile Include="LU.cu" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LU.cuh" />
     <ClInclude Include="LU.h" />
     <ClInclude Include="NewtonRaphson.h" />
   </ItemGroup>
